@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import Header from "./Header";
 
 // HELLLLOOOOO
 
@@ -11,7 +12,12 @@ function App() {
       .then((data) => setBacon(data));
   }, []);
 
-  return <div>{bacon ? bacon : `...where's my stuff?...`}</div>;
+  return (
+    <>
+      <Header />
+      <div>{bacon ? bacon : `...where's my stuff?...`}</div>
+    </>
+  );
 }
 
 export default App;
