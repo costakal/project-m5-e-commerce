@@ -1,9 +1,6 @@
 import React, { useState, useEffect } from "react";
-<<<<<<< Updated upstream
 
 // HELLLLOOOOO
-=======
->>>>>>> Stashed changes
 
 function App() {
   const [bacon, setBacon] = useState(null);
@@ -20,3 +17,5 @@ function App() {
 export default App;
 
 // Testing
+
+// I'm doing more work.
