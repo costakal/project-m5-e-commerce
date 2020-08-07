@@ -1,19 +1,34 @@
 import React from "react";
-import Header from "./Header";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
-// HELLLLOOOOO
+import GlobalStyles from "./GlobalStyles";
+import Header from "./Header";
 
 function App() {
   return (
     <>
-      <Header />
-      <div></div>
+      <GlobalStyles />
+      <Router>
+        <Header />
+        <Switch>
+          <Route exact path="/">
+            <div>replace this div with homepage catalog component</div>
+          </Route>
+          <Route path="/items/:itemId">
+            <div>replace this div with individual item component </div>
+          </Route>
+          <Route path="/companies">
+            <div>replace this div with the companies component</div>
+          </Route>
+          <Route path="/companies/:companyId">
+            <div>
+              replace this div with individual company store items component
+            </div>
+          </Route>
+        </Switch>
+      </Router>
     </>
   );
 }
 
 export default App;
-
-// Testing
-
-// I'm doing more work.
