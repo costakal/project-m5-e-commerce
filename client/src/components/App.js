@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 import GlobalStyles from "./GlobalStyles";
 import Header from "./Header";
+import HomeCatalog from "./Catalogs/HomeCatalog";
 
 function App() {
   return (
@@ -12,7 +13,7 @@ function App() {
         <Header />
         <Switch>
           <Route exact path="/">
-            <div>replace this div with homepage catalog component</div>
+            <HomeCatalog />
           </Route>
           <Route path="/items/:itemId">
             <div>replace this div with individual item component </div>
