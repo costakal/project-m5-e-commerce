@@ -28,5 +28,7 @@ express()
   // REST endpoints?
   .get("/items", handlers.handleItems)
   .get("/items/:itemId", handlers.handleItem)
+  .get("/companies", handlers.handleCompanies)
+  .get("/companies/:companyId", handlers.handleCompany)
 
   .listen(PORT, () => console.info(`Listening on port ${PORT}`));
