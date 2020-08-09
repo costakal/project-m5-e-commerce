@@ -11,6 +11,7 @@
 
 ```javascript
 {
+  "status": 200,
   "items": [
     {
       "name": "Product Name",
@@ -37,6 +38,7 @@
 
 ```javascript
 {
+  "status": 200,
   "item": {
     "name": "Product Name",
     "price": "$xx.xx",
