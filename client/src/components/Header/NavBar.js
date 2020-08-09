@@ -1,23 +1,31 @@
-import React from "react";
-import { NavLink } from "react-router-dom";
+import React, { useState } from "react";
+import { NavLink, Link } from "react-router-dom";
 import styled from "styled-components";
 
 import hamburger from "../../assets/hamburger.png";
 
 const NavBar = () => {
+  const [isVisible, setIsVisible] = useState(false);
+
   return (
-    <Wrapper>
-      <MobileNavMenu>
-        <img src={hamburger} />
-        <NavLink to="/">Products</NavLink>
-        <NavLink to="/">Companies</NavLink>
-      </MobileNavMenu>
-      <WebNavMenu>
-        <NavLink to="/">Products</NavLink>
-        <NavLink to="/">Companies</NavLink>
-      </WebNavMenu>
-      <button>Cart</button>
-    </Wrapper>
+    <>
+      <Wrapper>
+        <Hamburger>
+          <img src={hamburger} onClick={() => setIsVisible(!isVisible)} />
+        </Hamburger>
+        <WebNavMenu>
+          <NavLink to="/">Products</NavLink>
+          <NavLink to="/">Companies</NavLink>
+        </WebNavMenu>
+        <button>Cart</button>
+      </Wrapper>
+      {isVisible && (
+        <MobileNavMenu>
+          <Link to="/">Products</Link>
+          <Link to="/">Companies</Link>
+        </MobileNavMenu>
+      )}
+    </>
   );
 };
 
@@ -36,6 +44,22 @@ const Wrapper = styled.div`
 `;
 
 const MobileNavMenu = styled.div`
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  height: 100vh;
+  width: 100%;
+  a {
+    padding: 30px;
+    &:hover {
+      background: grey;
+    }
+  }
+`;
+
+const Hamburger = styled.button`
+  background-color: white;
+  border: none;
   img {
     height: 35px;
     &:hover {
@@ -45,7 +69,7 @@ const MobileNavMenu = styled.div`
   a {
     display: none;
   }
-  @media (min-width: 768px) {
+  @media (min-width: 769px) {
     display: none;
   }
 `;
