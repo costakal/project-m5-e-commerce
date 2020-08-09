@@ -16,7 +16,11 @@ const CatalogItem = ({item: {name, price, imageSrc, numInStock, companyId}}) => 
 };
 
 const Wrapper = styled.div`
-    width: 30%;
+    width: 20%;
+    margin: 20px;
+    img {
+        height: 100px;
+    }
 `;
 
 export default CatalogItem;
