@@ -15,8 +15,12 @@ const Header = () => {
 export default Header;
 
 const Wrapper = styled.div`
-  width: 100vw;
+  position: fixed;
+  top: 0;
+  height: 125px;
+  width: 100%;
   border-bottom: 1px solid black;
+  background-color: white;
 `;
 
 const StoreName = styled.h1`
