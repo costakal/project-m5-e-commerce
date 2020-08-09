@@ -1,7 +1,13 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
+import { fetchData } from '../../handlers';
 
 const CatalogItem = ({item: {name, price, imageSrc, numInStock, companyId}}) => {
+    const [companyName, setCompanyName] = useState(null);
+    useEffect(() => {
+        fetchData(`http://localhost:3000/companies/${companyId}`)
+        .then(res => setCompanyName(res.company.name));
+    }, []);
     return (
         <Wrapper>
             <h3>{name}</h3>
@@ -10,7 +16,7 @@ const CatalogItem = ({item: {name, price, imageSrc, numInStock, companyId}}) => 
             {numInStock > 0 ? 
             <p>In stock</p>
             :<p>Not in stock</p>}
-            <p>Sold by: <span>{companyId}</span></p>
+            <p>Sold by: <span>{companyName}</span></p>
         </Wrapper>
     );
 };
