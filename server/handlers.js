@@ -10,7 +10,7 @@ const handleItem = (req, res) => {
   const item = items.find((item) => item._id.toString() === _itemId);
   item !== undefined
     ? res.status(200).json({ status: 200, item: item })
-    : res.status(400).json({ status: 404, error: "Item not found." });
+    : res.status(404).json({ status: 404, error: "Item not found." });
 };
 
 const handleCompanies = (req, res) => {
@@ -24,7 +24,7 @@ const handleCompany = (req, res) => {
   );
   company !== undefined
     ? res.status(200).json({ status: 200, company: company })
-    : res.status(400).json({ status: 404, error: "Company not found." });
+    : res.status(404).json({ status: 404, error: "Company not found." });
 };
 
 module.exports = { handleItems, handleItem, handleCompanies, handleCompany };
