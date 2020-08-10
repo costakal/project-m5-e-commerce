@@ -28,9 +28,9 @@ const HomeCatalog = () => {
             {status === 'ready' ?
             <Catalog>
                 {items.items.map(item => 
-                    <Link to={`/items/${item._id}`} key={`home-catalog-${item._id}`}>
+                    <StyledLink to={`/items/${item._id}`} key={`home-catalog-${item._id}`}>
                         <CatalogItem item={item}/>
-                    </Link>
+                    </StyledLink>
                 )}
             </Catalog>
             : <Loading />}
@@ -45,6 +45,10 @@ const Catalog = styled.div`
   position: absolute;
   top: ${HEADER_HEIGHT};
 
+`;
+
+const StyledLink = styled(Link)`
+    width: 30%;
 `;
 
 export default HomeCatalog;
