@@ -4,11 +4,13 @@ import { HEADER_HEIGHT } from "../../constants";
 import { fetchData } from "../../handlers";
 import { requestAllItems, receiveAllItems } from "../../actions";
 import { useSelector, useDispatch } from "react-redux";
+import Loading from "../Loading";
 
 const Companies = () => {
   const dispatch = useDispatch();
-
   const companies = useSelector((state) => state.itemsReducer.companies);
+  const status = useSelector((state) => state.itemsReducer.status);
+
   console.log(companies);
 
   return <Companieslist>A list of all the Companies</Companieslist>;

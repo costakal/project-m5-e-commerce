@@ -1,23 +1,25 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-
+import {
+  requestAllItems,
+  receiveAllItems,
+  requestAllCompanies,
+  receiveAllCompanies,
+} from "../actions";
 import GlobalStyles from "./GlobalStyles";
 import Header from "./Header";
 import HomeCatalog from "./Catalogs/HomeCatalog";
-<<<<<<< Updated upstream
 import ItemDetails from "./Item/ItemDetails";
 import Companies from "./Lists/Companies";
-=======
-import ItemDetails from './Item/ItemDetails';
-import { requestAllItems, receiveAllItems, requestAllCompanies, receiveAllCompanies } from "../actions";
 import UseFetchData from "../Hooks/use-FetchData";
 
->>>>>>> Stashed changes
-
 function App() {
-  
-  UseFetchData(requestAllItems, receiveAllItems, 'http://localhost:3000/items');
-  UseFetchData(requestAllCompanies, receiveAllCompanies, `http://localhost:3000/companies`);
+  UseFetchData(requestAllItems, receiveAllItems, "http://localhost:3000/items");
+  UseFetchData(
+    requestAllCompanies,
+    receiveAllCompanies,
+    `http://localhost:3000/companies`
+  );
 
   return (
     <>
