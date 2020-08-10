@@ -100,16 +100,16 @@
 
 ```javascript
 {
-	"order": [
-		{
+  "order": [
+    {
       "itemId": 1234,
       "quantity": 2
-		},
-		{
+    },
+    {
       "itemId": 5678,
       "quantity": 1
-		}
-	]
+    }
+  ]
 }
 ```
 
