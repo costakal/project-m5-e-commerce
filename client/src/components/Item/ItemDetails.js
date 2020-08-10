@@ -5,16 +5,26 @@ import styled from 'styled-components';
 import { fetchData } from '../../handlers';
 import Loading from '../Loading';
 import { HEADER_HEIGHT } from '../../constants';
+import { useSelector } from 'react-redux';
 
 const ItemDetails = () => {
+    const items = useSelector(state => state.itemsReducer.items);
     const { itemId } = useParams();
     const [itemData, setItemData] = useState(null);
 
+    const handleAddToCart = (name) => {
+        console.log(name);
+    };
+
     useEffect(() => {
-        fetchData(`http://localhost:3000/items/${itemId}`)
-        .then(res => setItemData(res.item));
-    // eslint-disable-next-line
-    }, [])
+    //     fetchData(`http://localhost:3000/items/${itemId}`)
+    //     .then(res => setItemData(res.item));
+    if (items)    
+    console.log(items.items);
+        
+    // // eslint-disable-next-line
+    }, [items])
+    
 
     return (
         <>
@@ -22,7 +32,7 @@ const ItemDetails = () => {
             <Wrapper>
                 <h2>{itemData.name}</h2>
                 <img src={itemData.imageSrc} alt={itemData.name}/>
-                <button>Add to cart</button>
+                <button onClick={() => handleAddToCart(itemData.name)}>Add to cart</button>
             </Wrapper>
             : <Loading />
             }

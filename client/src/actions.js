@@ -15,3 +15,8 @@ export const receiveAllCompanies = (companies) => ({
     type: 'RECEIVE-ALL-COMPANIES',
     companies: companies
 });
+
+export const addItemToCart = (item) => ({
+    type: 'ADD-ITEM-TO-CART',
+    item: item
+});

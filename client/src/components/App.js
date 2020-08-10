@@ -9,10 +9,19 @@ import {
 import GlobalStyles from "./GlobalStyles";
 import Header from "./Header";
 import HomeCatalog from "./Catalogs/HomeCatalog";
+<<<<<<< Updated upstream
 import ItemDetails from "./Item/ItemDetails";
 import Companies from "./Lists/Companies";
 import UseFetchData from "../Hooks/use-FetchData";
 
+=======
+import Companies from "./Lists/Companies";
+import ItemDetails from './Item/ItemDetails';
+import { requestAllItems, receiveAllItems, requestAllCompanies, receiveAllCompanies } from "../actions";
+import UseFetchData from "../Hooks/use-FetchData";
+
+
+>>>>>>> Stashed changes
 function App() {
   UseFetchData(requestAllItems, receiveAllItems, "http://localhost:3000/items");
   UseFetchData(
