@@ -1,31 +1,31 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
-import { fetchData } from '../../handlers';
+import { useSelector } from 'react-redux';
+import Loading from '../Loading';
 
 const CatalogItem = ({item: {name, price, imageSrc, numInStock, companyId}}) => {
-    const [companyName, setCompanyName] = useState(null);
+    const companies = useSelector(state => state.companiesReducer.companies);
+    const status = useSelector(state => state.companiesReducer.status);
 
-    useEffect(() => {
-        let mounted = true;
-        fetchData(`http://localhost:3000/companies/${companyId}`)
-        .then(res => {
-            if (mounted)
-                setCompanyName(res.company.name)
-        });        
-
-        return () => mounted = false;
-    }, []);
-
+    const getCompanyName = () => {
+        return companies.companies.find(element => element._id === companyId).name;
+    }
+                
     return (
-        <Wrapper>
-            <h3>{name}</h3>
-            <img src={imageSrc} alt={name}/>
-            <p>{price}</p>
-            {numInStock > 0 ? 
-            <p>In stock</p>
-            :<p>Not in stock</p>}
-            <p>Sold by: <span>{companyName}</span></p>
-        </Wrapper>
+        <>
+            {status === 'ready' ?
+            <Wrapper>
+                <h3>{name}</h3>
+                <img src={imageSrc} alt={name}/>
+                <p>{price}</p>
+                {numInStock > 0 ? 
+                <p>In stock</p>
+                :<p>Not in stock</p>}
+                <p>Sold by: <span>{getCompanyName()}</span></p>
+            </Wrapper>
+            : <Loading />
+            }
+        </>
     );
 };
 

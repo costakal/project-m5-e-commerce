@@ -13,6 +13,7 @@ const ItemDetails = () => {
     useEffect(() => {
         fetchData(`http://localhost:3000/items/${itemId}`)
         .then(res => setItemData(res.item));
+    // eslint-disable-next-line
     }, [])
 
     return (
@@ -21,6 +22,7 @@ const ItemDetails = () => {
             <Wrapper>
                 <h2>{itemData.name}</h2>
                 <img src={itemData.imageSrc} alt={itemData.name}/>
+                <button>Add to cart</button>
             </Wrapper>
             : <Loading />
             }
