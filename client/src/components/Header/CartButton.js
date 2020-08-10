@@ -1,10 +1,16 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 
-const cartButton = () => {
+import Cart from "../Cart";
+
+const CartButton = () => {
+  const [showCart, setShowCart] = useState(false);
+  const handleShow = () => setShowCart(true);
+
   return (
     <>
-      <Button>Cart</Button>
+      <Button onClick={handleShow}>Cart</Button>
+      <Cart showCart={showCart} setShowCart={setShowCart} />
     </>
   );
 };
@@ -21,4 +27,4 @@ const Button = styled.button`
   }
 `;
 
-export default cartButton;
+export default CartButton;
