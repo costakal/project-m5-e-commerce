@@ -16,11 +16,11 @@ const ItemDetails = () => {
         console.log(name);
     };
 
+    
     useEffect(() => {
-    //     fetchData(`http://localhost:3000/items/${itemId}`)
-    //     .then(res => setItemData(res.item));
-    if (items)    
-    console.log(items.items);
+        if (items) {
+            setItemData(items.items.find(i => i._id == itemId));
+        }
         
     // // eslint-disable-next-line
     }, [items])
