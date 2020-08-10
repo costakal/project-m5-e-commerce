@@ -1,16 +1,17 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-
+import { useDispatch } from 'react-redux';
 import Cart from "../Cart";
+import { toggleCartModal } from "../../actions";
 
 const CartButton = () => {
-  const [showCart, setShowCart] = useState(false);
-  const handleShow = () => setShowCart(true);
+  const dispatch = useDispatch();
+  const handleShow = () => dispatch(toggleCartModal());
 
   return (
     <>
       <Button onClick={handleShow}>Cart</Button>
-      <Cart showCart={showCart} setShowCart={setShowCart} />
+      <Cart />
     </>
   );
 };

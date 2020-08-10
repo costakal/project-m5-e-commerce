@@ -1,13 +1,16 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
+import { useSelector, useDispatch } from 'react-redux';
 
 import CartItem from "./CartItem";
+import { toggleCartModal } from "../../actions";
 
-const Cart = ({ showCart, setShowCart }) => {
-  const [emptyCart, setEmptyCard] = useState(true);
-  // when we add items to the cart setEmptyCart to false.
+const Cart = () => {
+  const dispatch = useDispatch();
+  const showCart = useSelector(state => state.cartReducer.showCart);
+  const cartItems = useSelector(state => state.cartReducer.cartItems);
 
-  const handleClose = () => setShowCart(false);
+  const handleClose = () => dispatch(toggleCartModal());
 
   return (
     <>
@@ -16,9 +19,8 @@ const Cart = ({ showCart, setShowCart }) => {
           <Mask onClick={handleClose} />
           <CartContent>
             <button onClick={handleClose}>X</button>
-            {emptyCart && <p>Your cart is empty</p>}
-            <CartItem />
-            <CartItem />
+            {cartItems.length === 0 && <p>Your cart is empty</p>}
+            {cartItems.map(item => <CartItem item={item} key={`cart-item-${item._id}`}/>)}
             <p>
               Subtotal: <span>$x.xx</span>
             </p>

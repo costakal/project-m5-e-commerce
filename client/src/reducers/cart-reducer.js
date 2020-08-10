@@ -1,5 +1,6 @@
 const initialState = {
     cartItems: [],
+    showCart: false
 };
 
 export default function cartReducer(state = initialState, action) {
@@ -7,7 +8,24 @@ export default function cartReducer(state = initialState, action) {
         case 'ADD-ITEM-TO-CART':
             return {
                 ...state,
-                cartItems : [...state.cartItems, action.item]
+                cartItems : [
+                    ...state.cartItems, 
+                    {   
+                        _id: action.item._id,
+                        quantity: 1,
+                        price: action.item.price,
+                        imageSrc: action.item.imageSrc,
+                        name: action.item.name
+                    }
+                ]
+            }
+        case 'TOGGLE-CART-MODAL':
+            return {
+                ...state,
+                showCart: !state.showCart
+            }
+        case 'ADD-EXISTING-ITEM-TO-CART':            
+            return {
             }
         default:
             return state;

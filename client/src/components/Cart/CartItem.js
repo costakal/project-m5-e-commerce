@@ -1,18 +1,18 @@
 import React from "react";
 import styled from "styled-components";
 
-const CartItem = () => {
+const CartItem = ({item}) => {
   return (
     <>
       <ItemBox>
-        <img src="http://goo.gl/ijai22" />
-        <p>Item name</p>
+        <img src={item.imageSrc} />
+        <p>{item.name}</p>
         <p>
-          Price <span>%x.xx</span>
+          Price <span>{item.price}</span>
         </p>
         <button>-</button>
         <input value="1" />
-        <button>+</button>
+        <button >+</button>
         <button>X</button>
       </ItemBox>
     </>

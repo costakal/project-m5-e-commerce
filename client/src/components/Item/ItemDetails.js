@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import Loading from '../Loading';
 import { HEADER_HEIGHT } from '../../constants';
 import { useSelector, useDispatch } from 'react-redux';
-import { addItemToCart } from '../../actions';
+import { addItemToCart, toggleCartModal } from '../../actions';
 
 const ItemDetails = () => {
     const dispatch = useDispatch();
@@ -15,7 +15,8 @@ const ItemDetails = () => {
     const [itemData, setItemData] = useState(null);
 
     const handleAddToCart = (item) => {
-        dispatch(addItemToCart(item))
+        dispatch(addItemToCart(item));
+        dispatch(toggleCartModal());
     };
 
     

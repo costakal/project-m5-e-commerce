@@ -20,3 +20,7 @@ export const addItemToCart = (item) => ({
     type: 'ADD-ITEM-TO-CART',
     item: item
 });
+
+export const toggleCartModal = () => ({
+    type: 'TOGGLE-CART-MODAL'
+});
