@@ -27,4 +27,33 @@ const handleCompany = (req, res) => {
     : res.status(404).json({ status: 404, error: "Company not found." });
 };
 
-module.exports = { handleItems, handleItem, handleCompanies, handleCompany };
+const handlePurchase = (req, res) => {
+  const { order } = req.body;
+  let outOfStock = false;
+
+  order.forEach((orderItem) => {
+    const item = items.find((item) => item._id === orderItem.itemId);
+    item.numInStock < orderItem.quantity && (outOfStock = true);
+  });
+
+  if (outOfStock === true) {
+    res.status(400).json({
+      status: 400,
+      error: "Sorry but one or more items in your order are out of stock.",
+    });
+  } else {
+    order.forEach((orderItem) => {
+      const item = items.find((item) => item._id === orderItem.itemId);
+      item.numInStock -= orderItem.quantity;
+    });
+    res.status(200).json({ status: 200, order: order });
+  }
+};
+
+module.exports = {
+  handleItems,
+  handleItem,
+  handleCompanies,
+  handleCompany,
+  handlePurchase,
+};

@@ -1,11 +1,12 @@
 ## Server Endpoints
 
-| Method | Endpoint                | Description                                    |
-| ------ | ----------------------- | ---------------------------------------------- |
-| GET    | `/items`                | Returns an array of all store items            |
-| GET    | `/items/:itemId`        | Returns the item object with id `itemId`       |
-| GET    | `/companies`            | Returns an array of all companies              |
-| GET    | `/companies/:companyId` | Returns the company object with id `companyId` |
+| Method | Endpoint                | Description                                                                                                    |
+| ------ | ----------------------- | -------------------------------------------------------------------------------------------------------------- |
+| GET    | `/items`                | Returns an array of all store items                                                                            |
+| GET    | `/items/:itemId`        | Returns the item object with id `itemId`                                                                       |
+| GET    | `/companies`            | Returns an array of all companies                                                                              |
+| GET    | `/companies/:companyId` | Returns the company object with id `companyId`                                                                 |
+| PUT    | `/order`                | Reduces the stock of each ordered item by the quantity ordered. Responds with status and original order array. |
 
 ---
 
@@ -90,5 +91,53 @@
     "country": "Canada",
     "_id": 1234,
   }
+}
+```
+
+---
+
+### Structure of `PUT` body for `/order`
+
+```javascript
+{
+	"order": [
+		{
+      "itemId": 1234,
+      "quantity": 2
+		},
+		{
+      "itemId": 5678,
+      "quantity": 1
+		}
+	]
+}
+```
+
+---
+
+### Structure of server response for `/order`
+
+```javascript
+{
+  "status": 200,
+  "order": [
+    {
+      "itemId": 1234,
+      "quantity": 2
+    },
+    {
+      "itemId": 5678,
+      "quantity": 1
+    }
+  ]
+}
+```
+
+or...
+
+```javascript
+{
+  "status": 400,
+  "error": "Sorry but one or more items in your order are out of stock."
 }
 ```

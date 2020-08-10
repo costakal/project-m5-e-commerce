@@ -25,10 +25,11 @@ express()
   .use(express.urlencoded({ extended: false }))
   .use("/", express.static(__dirname + "/"))
 
-  // REST endpoints?
+  // REST endpoints
   .get("/items", handlers.handleItems)
   .get("/items/:itemId", handlers.handleItem)
   .get("/companies", handlers.handleCompanies)
   .get("/companies/:companyId", handlers.handleCompany)
+  .put("/order", handlers.handlePurchase)
 
   .listen(PORT, () => console.info(`Listening on port ${PORT}`));
