@@ -6,7 +6,7 @@ import { HEADER_HEIGHT } from "../../constants";
 
 const Header = () => {
   return (
-    <Wrapper>
+    <Wrapper style={{ zIndex: "1" }}>
       <StoreName>The Store Name</StoreName>
       <NavBar />
     </Wrapper>
