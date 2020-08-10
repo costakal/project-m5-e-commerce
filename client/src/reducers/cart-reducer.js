@@ -7,7 +7,7 @@ export default function cartReducer(state = initialState, action) {
         case 'ADD-ITEM-TO-CART':
             return {
                 ...state,
-                cartItems : state.cartItems.push(action.item)
+                cartItems : [...state.cartItems, action.item]
             }
         default:
             return state;

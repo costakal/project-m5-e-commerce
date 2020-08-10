@@ -2,18 +2,20 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
 
-import { fetchData } from '../../handlers';
 import Loading from '../Loading';
 import { HEADER_HEIGHT } from '../../constants';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { addItemToCart } from '../../actions';
 
 const ItemDetails = () => {
+    const dispatch = useDispatch();
+    const cartItems = useSelector(state => state.cartReducer.cartItems);
     const items = useSelector(state => state.itemsReducer.items);
     const { itemId } = useParams();
     const [itemData, setItemData] = useState(null);
 
-    const handleAddToCart = (name) => {
-        console.log(name);
+    const handleAddToCart = (item) => {
+        dispatch(addItemToCart(item))
     };
 
     
@@ -22,17 +24,16 @@ const ItemDetails = () => {
             setItemData(items.items.find(i => i._id == itemId));
         }
         
-    // // eslint-disable-next-line
     }, [items])
     
-
+    console.log(cartItems)
     return (
         <>
             {itemData ?
             <Wrapper>
                 <h2>{itemData.name}</h2>
                 <img src={itemData.imageSrc} alt={itemData.name}/>
-                <button onClick={() => handleAddToCart(itemData.name)}>Add to cart</button>
+                <button onClick={() => handleAddToCart(itemData)}>Add to cart</button>
             </Wrapper>
             : <Loading />
             }
