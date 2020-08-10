@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 import NavBar from "./NavBar";
+import { HEADER_HEIGHT } from "../../constants";
 
 const Header = () => {
   return (
@@ -17,7 +18,7 @@ export default Header;
 const Wrapper = styled.div`
   position: fixed;
   top: 0;
-  height: 125px;
+  height: ${HEADER_HEIGHT};
   width: 100%;
   border-bottom: 1px solid black;
   background-color: white;

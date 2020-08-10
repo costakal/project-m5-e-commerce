@@ -3,7 +3,6 @@ import Loader from 'react-loader-spinner';
 import styled from 'styled-components';
 
 const Loading = () => {
-    console.log('rodeo')
     return (
         <Wrapper>
             <Loader

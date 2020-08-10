@@ -1,11 +1,13 @@
 import React, { useEffect } from "react";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
+import { Link } from 'react-router-dom';
 
 import CatalogItem from "../Item/CatalogItem";
 import Loading from "../Loading";
 import { requestAllItems, receiveAllItems } from "../../actions";
 import { fetchData } from "../../handlers";
+import { HEADER_HEIGHT } from "../../constants";
 
 const HomeCatalog = () => {
     const dispatch = useDispatch();
@@ -25,8 +27,10 @@ const HomeCatalog = () => {
         <>
             {status === 'ready' ?
             <Catalog>
-                {items.items.map(item =>                                 
-                    <CatalogItem key={`home-catalog-${item._id}`} item={item}/>
+                {items.items.map(item => 
+                    <Link to={`/items/${item._id}`} key={`home-catalog-${item._id}`}>
+                        <CatalogItem item={item}/>
+                    </Link>
                 )}
             </Catalog>
             : <Loading />}
@@ -38,7 +42,9 @@ const HomeCatalog = () => {
 const Catalog = styled.div`
   display: flex;
   flex-wrap: wrap;
-  margin-top: 125px;
+  position: absolute;
+  top: ${HEADER_HEIGHT};
+
 `;
 
 export default HomeCatalog;

@@ -4,10 +4,18 @@ import { fetchData } from '../../handlers';
 
 const CatalogItem = ({item: {name, price, imageSrc, numInStock, companyId}}) => {
     const [companyName, setCompanyName] = useState(null);
+
     useEffect(() => {
+        let mounted = true;
         fetchData(`http://localhost:3000/companies/${companyId}`)
-        .then(res => setCompanyName(res.company.name));
+        .then(res => {
+            if (mounted)
+                setCompanyName(res.company.name)
+        });        
+
+        return () => mounted = false;
     }, []);
+
     return (
         <Wrapper>
             <h3>{name}</h3>
@@ -22,8 +30,6 @@ const CatalogItem = ({item: {name, price, imageSrc, numInStock, companyId}}) => 
 };
 
 const Wrapper = styled.div`
-    width: 20%;
-    margin: 20px;
     img {
         height: 100px;
     }

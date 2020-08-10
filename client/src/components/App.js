@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import GlobalStyles from "./GlobalStyles";
 import Header from "./Header";
 import HomeCatalog from "./Catalogs/HomeCatalog";
+import ItemDetails from './Item/ItemDetails';
 
 function App() {
   return (
@@ -16,7 +17,7 @@ function App() {
             <HomeCatalog />
           </Route>
           <Route path="/items/:itemId">
-            <div>replace this div with individual item component </div>
+            <ItemDetails />
           </Route>
           <Route path="/companies">
             <div>replace this div with the companies component</div>
