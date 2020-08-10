@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { NavLink, Link } from "react-router-dom";
 import styled from "styled-components";
-
+import CartButton from "./CartButton";
 import hamburger from "../../assets/hamburger.png";
+import Companies from "../Lists/Companies";
 
 const NavBar = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -15,9 +16,9 @@ const NavBar = () => {
         </Hamburger>
         <WebNavMenu>
           <NavLink to="/">Products</NavLink>
-          <NavLink to="/">Companies</NavLink>
+          <NavLink to="/companieslist">Companies</NavLink>
         </WebNavMenu>
-        <button>Cart</button>
+        <CartButton />
       </Wrapper>
       {isVisible && (
         <MobileNavMenu>

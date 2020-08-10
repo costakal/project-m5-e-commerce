@@ -4,7 +4,8 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import GlobalStyles from "./GlobalStyles";
 import Header from "./Header";
 import HomeCatalog from "./Catalogs/HomeCatalog";
-import ItemDetails from './Item/ItemDetails';
+import ItemDetails from "./Item/ItemDetails";
+import Companies from "./Lists/Companies";
 
 function App() {
   return (
@@ -14,15 +15,17 @@ function App() {
         <Header />
         <Switch>
           <Route exact path="/">
+            {/* <div style="margin-top:*navbar height*> */}
             <HomeCatalog />
+            {/* </div> */}
           </Route>
-          <Route path="/items/:itemId">
+          <Route exact path="/items/:itemId">
             <ItemDetails />
           </Route>
-          <Route path="/companies">
-            <div>replace this div with the companies component</div>
+          <Route exact path="/companieslist">
+            <Companies />
           </Route>
-          <Route path="/companies/:companyId">
+          <Route exact path="/companies/:companyId">
             <div>
               replace this div with individual company store items component
             </div>
