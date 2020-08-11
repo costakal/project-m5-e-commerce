@@ -12,6 +12,7 @@ import HomeCatalog from "./Catalogs/HomeCatalog";
 import ItemDetails from "./Item/ItemDetails";
 import Companies from "./Lists/Companies";
 import UseFetchData from "../Hooks/use-FetchData";
+import CompanyDetails from "./Lists/CompanyDetail";
 
 function App() {
   UseFetchData(requestAllItems, receiveAllItems, "http://localhost:3000/items");
@@ -39,9 +40,7 @@ function App() {
             <Companies />
           </Route>
           <Route exact path="/companies/:companyId">
-            <div>
-              replace this div with individual company store items component
-            </div>
+            <CompanyDetails />
           </Route>
         </Switch>
       </Router>

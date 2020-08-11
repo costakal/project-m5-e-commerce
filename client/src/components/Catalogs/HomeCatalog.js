@@ -6,10 +6,13 @@ import { Link } from "react-router-dom";
 import CatalogItem from "../Item/CatalogItem";
 import Loading from "../Loading";
 import { HEADER_HEIGHT } from "../../constants";
+import Companies from "../Lists/Companies";
 
 const HomeCatalog = () => {
   const items = useSelector((state) => state.itemsReducer.items);
   const status = useSelector((state) => state.itemsReducer.status);
+
+  console.log("ddd", items);
 
   return (
     <>
