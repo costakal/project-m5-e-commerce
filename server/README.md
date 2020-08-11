@@ -5,12 +5,12 @@
 | GET    | `/items`                | Returns an array of all store items                                                                            |
 | GET    | `/items/:itemId`        | Returns the item object with id `itemId`                                                                       |
 | GET    | `/companies`            | Returns an array of all companies                                                                              |
-| GET    | `/companies/:companyId` | Returns the company object with id `companyId`                                                                 |
+| GET    | `/companies/:companyId` | Returns the company object and items array with id `companyId`                                                 |
 | PUT    | `/order`                | Reduces the stock of each ordered item by the quantity ordered. Responds with status and original order array. |
 
 ---
 
-### Structure of `items` array
+### Structure of server response for `/items`
 
 ```javascript
 {
@@ -37,7 +37,7 @@
 
 ---
 
-### Structure of `item` object
+### Structure of server response for `/items/:itemId`
 
 ```javascript
 {
@@ -57,7 +57,7 @@
 
 ---
 
-### Structure of `companies` array
+### Structure of server response for `/companies`
 
 ```javascript
 {
@@ -80,7 +80,7 @@
 
 ---
 
-### Structure of `company` object
+### Structure of server response for `/companies/:companyId`
 
 ```javascript
 {
@@ -90,7 +90,24 @@
     "url": "http://.../",
     "country": "Canada",
     "_id": 1234,
-  }
+  },
+  "items": [
+    {
+      "name": "Product Name",
+      "price": "$xx.xx",
+      "body_location": "Wrist",
+      "category": "Fitness",
+      "_id": 1234,
+      "imageSrc": ...,
+      "numInStock": 9,
+      "companyId": 19962,
+    },
+    {
+      "name": ...,
+      "price": ...,
+      ...
+    },
+  ]
 }
 ```
 

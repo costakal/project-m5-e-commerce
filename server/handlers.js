@@ -22,9 +22,17 @@ const handleCompany = (req, res) => {
   const company = companies.find(
     (company) => company._id.toString() === _companyId
   );
-  company !== undefined
-    ? res.status(200).json({ status: 200, company: company })
-    : res.status(404).json({ status: 404, error: "Company not found." });
+  const companyItems = [];
+
+  if (company !== undefined) {
+    items.forEach(
+      (item) =>
+        item.companyId.toString() === _companyId && companyItems.push(item)
+    );
+    res
+      .status(200)
+      .json({ status: 200, company: company, items: companyItems });
+  } else res.status(404).json({ status: 404, error: "Company not found." });
 };
 
 const handlePurchase = (req, res) => {
