@@ -30,6 +30,8 @@ express()
   .get("/items/:itemId", handlers.handleItem)
   .get("/companies", handlers.handleCompanies)
   .get("/companies/:companyId", handlers.handleCompany)
+  .get("/categories", handlers.handleCategories)
+  .get("/categories/:categoryName", handlers.handleCategory)
   .put("/order", handlers.handlePurchase)
 
   .listen(PORT, () => console.info(`Listening on port ${PORT}`));

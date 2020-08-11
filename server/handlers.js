@@ -1,5 +1,13 @@
 const items = require("./data/fixedItems.json");
 const companies = require("./data/fixedCompanies.json");
+const categories = [];
+
+const populateCategories = () => {
+  items.forEach((item) => {
+    categories.find((category) => category === item.category.toLowerCase()) ===
+      undefined && categories.push(item.category.toLowerCase());
+  });
+};
 
 const handleItems = (req, res) => {
   res.status(200).json({ status: 200, items: items });
@@ -35,6 +43,29 @@ const handleCompany = (req, res) => {
   } else res.status(404).json({ status: 404, error: "Company not found." });
 };
 
+const handleCategories = (req, res) => {
+  populateCategories();
+  res.status(200).json({ status: 200, categories: categories });
+};
+
+const handleCategory = (req, res) => {
+  populateCategories();
+  const _categoryName = req.params.categoryName.toLowerCase();
+  const category = categories.find((category) => category === _categoryName);
+  const categoryItems = [];
+
+  if (category !== undefined) {
+    items.forEach(
+      (item) =>
+        item.category.toLowerCase() === _categoryName &&
+        categoryItems.push(item)
+    );
+    res
+      .status(200)
+      .json({ status: 200, category: category, items: categoryItems });
+  } else res.status(404).json({ status: 404, error: "Category not found." });
+};
+
 const handlePurchase = (req, res) => {
   const { order } = req.body;
   let outOfStock = false;
@@ -63,5 +94,7 @@ module.exports = {
   handleItem,
   handleCompanies,
   handleCompany,
+  handleCategories,
+  handleCategory,
   handlePurchase,
 };
