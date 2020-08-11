@@ -1,7 +1,20 @@
 import React from "react";
 import styled from "styled-components";
+import { useSelector, useDispatch } from "react-redux";
 
-const CartItem = ({item}) => {
+import {
+  addExistingItemToCart,
+  removeItemFromCart,
+  decreaseItemFromCart,
+  updateQuantityByInputInCart,
+} from "../../actions";
+
+const CartItem = ({ item }) => {
+  const cartItems = useSelector((state) => state.cartReducer.cartItems);
+  const dispatch = useDispatch();
+  const cartItemStoreObj = cartItems.find(
+    (element) => element._id === item._id
+  );
   return (
     <>
       <ItemBox>
@@ -10,10 +23,23 @@ const CartItem = ({item}) => {
         <p>
           Price <span>{item.price}</span>
         </p>
-        <button>-</button>
-        <input value="1" />
-        <button >+</button>
-        <button>X</button>
+        <button
+          onClick={() =>
+            cartItemStoreObj.quantity > 1
+              ? dispatch(decreaseItemFromCart(item))
+              : dispatch(removeItemFromCart(item))
+          }
+        >
+          -
+        </button>
+        <input
+          value={cartItemStoreObj.quantity}
+          // onChange={(e) =>
+          //   dispatch(updateQuantityByInputInCart(item, e.target.value))
+          // }
+        />
+        <button onClick={() => dispatch(addExistingItemToCart(item))}>+</button>
+        <button onClick={() => dispatch(removeItemFromCart(item))}>X</button>
       </ItemBox>
     </>
   );

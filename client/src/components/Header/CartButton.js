@@ -1,16 +1,27 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { useDispatch } from 'react-redux';
+import { useDispatch } from "react-redux";
 import Cart from "../Cart";
 import { toggleCartModal } from "../../actions";
+import { useSelector } from "react-redux";
 
 const CartButton = () => {
   const dispatch = useDispatch();
+  const { cartItems, subtotal } = useSelector((state) => state.cartReducer);
+  
   const handleShow = () => dispatch(toggleCartModal());
 
   return (
     <>
-      <Button onClick={handleShow}>Cart</Button>
+      <Button onClick={handleShow}>
+        Cart
+        <div>
+          <span>
+            {cartItems.reduce((acc, item) => acc + item.quantity, 0)} items
+          </span>
+          <span>$ {subtotal}</span>
+        </div>
+      </Button>
       <Cart />
     </>
   );

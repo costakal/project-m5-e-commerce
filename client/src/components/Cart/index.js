@@ -1,17 +1,28 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
 
 import CartItem from "./CartItem";
-import { toggleCartModal } from "../../actions";
+import { toggleCartModal, updateCartSubtotal } from "../../actions";
 
 const Cart = () => {
   const dispatch = useDispatch();
-  const showCart = useSelector((state) => state.cartReducer.showCart);
-  const cartItems = useSelector((state) => state.cartReducer.cartItems);
+  const { showCart, cartItems, subtotal } = useSelector(
+    (state) => state.cartReducer
+  );
 
   const handleClose = () => dispatch(toggleCartModal());
 
+  useEffect(() => {
+    if (cartItems.length > 0) {
+      let subtotal = cartItems.reduce(
+        (acc, item) =>
+          acc + Number(cartItems[0].price.replace("$", "")) * item.quantity,
+        0
+      );
+      dispatch(updateCartSubtotal(subtotal));
+    }
+  }, [cartItems]);
   return (
     <>
       {showCart && (
@@ -24,7 +35,7 @@ const Cart = () => {
               <CartItem item={item} key={`cart-item-${item._id}`} />
             ))}
             <p>
-              Subtotal: <span>$x.xx</span>
+              Subtotal: <span>{subtotal}</span>
             </p>
             <button onClick={handleClose}>Continue Shopping</button>
             <button>Checkout</button>
