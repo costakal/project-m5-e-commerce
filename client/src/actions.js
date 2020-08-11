@@ -21,6 +21,11 @@ export const addItemToCart = (item) => ({
     item: item
 });
 
+export const addExistingItemToCart = (item) => ({
+    type: 'ADD-EXISTING-ITEM-TO-CART',
+    item: item
+});
+
 export const toggleCartModal = () => ({
     type: 'TOGGLE-CART-MODAL'
 });

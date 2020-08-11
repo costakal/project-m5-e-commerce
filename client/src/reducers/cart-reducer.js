@@ -24,8 +24,19 @@ export default function cartReducer(state = initialState, action) {
                 ...state,
                 showCart: !state.showCart
             }
-        case 'ADD-EXISTING-ITEM-TO-CART':            
+        case 'ADD-EXISTING-ITEM-TO-CART': 
+            let newCart = state.cartItems.map(item => {
+                if(action.item._id === item._id) {
+                    return {
+                        ...item,
+                        quantity: item.quantity + 1
+                    }
+                } else 
+                    return item;
+            });
             return {
+                ...state,
+                cartItems: newCart                     
             }
         default:
             return state;

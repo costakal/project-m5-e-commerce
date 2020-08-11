@@ -12,8 +12,6 @@ const HomeCatalog = () => {
   const items = useSelector((state) => state.itemsReducer.items);
   const status = useSelector((state) => state.itemsReducer.status);
 
-  console.log("ddd", items);
-
   return (
     <>
       {status === "ready" ? (
