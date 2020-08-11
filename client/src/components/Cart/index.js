@@ -1,14 +1,14 @@
 import React from "react";
 import styled from "styled-components";
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from "react-redux";
 
 import CartItem from "./CartItem";
 import { toggleCartModal } from "../../actions";
 
 const Cart = () => {
   const dispatch = useDispatch();
-  const showCart = useSelector(state => state.cartReducer.showCart);
-  const cartItems = useSelector(state => state.cartReducer.cartItems);
+  const showCart = useSelector((state) => state.cartReducer.showCart);
+  const cartItems = useSelector((state) => state.cartReducer.cartItems);
 
   const handleClose = () => dispatch(toggleCartModal());
 
@@ -20,7 +20,9 @@ const Cart = () => {
           <CartContent>
             <button onClick={handleClose}>X</button>
             {cartItems.length === 0 && <p>Your cart is empty</p>}
-            {cartItems.map(item => <CartItem item={item} key={`cart-item-${item._id}`}/>)}
+            {cartItems.map((item) => (
+              <CartItem item={item} key={`cart-item-${item._id}`} />
+            ))}
             <p>
               Subtotal: <span>$x.xx</span>
             </p>
