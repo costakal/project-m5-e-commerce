@@ -1,6 +1,7 @@
 const items = require("./data/fixedItems.json");
 const companies = require("./data/fixedCompanies.json");
 const categories = [];
+const { v4: uuidv4 } = require("uuid");
 
 const populateCategories = () => {
   items.forEach((item) => {
@@ -81,11 +82,14 @@ const handlePurchase = (req, res) => {
       error: "Sorry but one or more items in your order are out of stock.",
     });
   } else {
+    const confirmation = uuidv4();
     order.forEach((orderItem) => {
       const item = items.find((item) => item._id === orderItem.itemId);
       item.numInStock -= orderItem.quantity;
     });
-    res.status(200).json({ status: 200, order: order });
+    res
+      .status(200)
+      .json({ status: 200, confirmation: confirmation, order: order });
   }
 };
 

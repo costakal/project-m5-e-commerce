@@ -1,14 +1,14 @@
 ## Server Endpoints
 
-| Method | Endpoint                    | Description                                                                                                    |
-| ------ | --------------------------- | -------------------------------------------------------------------------------------------------------------- |
-| GET    | `/items`                    | Returns an array of all store items                                                                            |
-| GET    | `/items/:itemId`            | Returns the item object with id `itemId`                                                                       |
-| GET    | `/companies`                | Returns an array of all companies                                                                              |
-| GET    | `/companies/:companyId`     | Returns the company object and items array with id `companyId`                                                 |
-| GET    | `/categories`               | Returns an array of all categories                                                                             |
-| GET    | `/categories/:categoryName` | Returns an array of items with category `categoryName`                                                         |
-| PUT    | `/order`                    | Reduces the stock of each ordered item by the quantity ordered. Responds with status and original order array. |
+| Method | Endpoint                    | Description                                                                                                                  |
+| ------ | --------------------------- | ---------------------------------------------------------------------------------------------------------------------------- |
+| GET    | `/items`                    | Returns an array of all store items                                                                                          |
+| GET    | `/items/:itemId`            | Returns the item object with id `itemId`                                                                                     |
+| GET    | `/companies`                | Returns an array of all companies                                                                                            |
+| GET    | `/companies/:companyId`     | Returns the company object and items array with id `companyId`                                                               |
+| GET    | `/categories`               | Returns an array of all categories                                                                                           |
+| GET    | `/categories/:categoryName` | Returns an array of items with category `categoryName`                                                                       |
+| PUT    | `/order`                    | Reduces the stock of each ordered item by the quantity ordered. Responds with status, confirmation and original order array. |
 
 ---
 
@@ -183,6 +183,7 @@
 ```javascript
 {
   "status": 200,
+  "confirmation": "dd0451c5-97ae-47fd-accf-62ea7dd12fb5",
   "order": [
     {
       "itemId": 1234,
