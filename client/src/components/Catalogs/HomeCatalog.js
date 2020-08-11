@@ -1,30 +1,39 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
 import CatalogItem from "../Item/CatalogItem";
 import Loading from "../Loading";
-import { HEADER_HEIGHT } from "../../constants";
+import { HEADER_HEIGHT, FEATURED_HEIGHT } from "../../constants";
 import Companies from "../Lists/Companies";
+import FeaturedItems from "./FeaturedItems";
 
 const HomeCatalog = () => {
+  const [visibleItems, setVisibleItems] = useState(4);
   const items = useSelector((state) => state.itemsReducer.items);
   const status = useSelector((state) => state.itemsReducer.status);
+
+  const showMore = () => setVisibleItems(visibleItems + 4);
 
   return (
     <>
       {status === "ready" ? (
-        <Catalog>
-          {items.items.map((item) => (
-            <StyledLink
-              to={`/items/${item._id}`}
-              key={`home-catalog-${item._id}`}
-            >
-              <CatalogItem item={item} />
-            </StyledLink>
-          ))}
-        </Catalog>
+        <>
+          <FeaturesTitle>Featured Items</FeaturesTitle>
+          <FeaturedItems />
+          <Catalog>
+            {items.items.slice(0, visibleItems).map((item) => (
+              <StyledLink
+                to={`/items/${item._id}`}
+                key={`home-catalog-${item._id}`}
+              >
+                <CatalogItem item={item} />
+              </StyledLink>
+            ))}
+            <button onClick={showMore}>Load More</button>
+          </Catalog>
+        </>
       ) : (
         <Loading />
       )}
@@ -33,11 +42,16 @@ const HomeCatalog = () => {
   // eslint-disable-next-line
 };
 
+const FeaturesTitle = styled.h2`
+  position: absolute;
+  top: ${HEADER_HEIGHT};
+`;
+
 const Catalog = styled.div`
   display: flex;
   flex-wrap: wrap;
   position: absolute;
-  top: ${HEADER_HEIGHT};
+  top: ${FEATURED_HEIGHT};
 `;
 
 const StyledLink = styled(Link)`

@@ -13,6 +13,7 @@ import ItemDetails from "./Item/ItemDetails";
 import Companies from "./Lists/Companies";
 import UseFetchData from "../Hooks/use-FetchData";
 import CompanyDetails from "./Lists/CompanyDetail";
+import FeaturedItems from "./Catalogs/FeaturedItems";
 
 function App() {
   UseFetchData(requestAllItems, receiveAllItems, "http://localhost:3000/items");
@@ -41,6 +42,9 @@ function App() {
           </Route>
           <Route exact path="/companies/:companyId">
             <CompanyDetails />
+          </Route>
+          <Route exact path="/featured">
+            <FeaturedItems />
           </Route>
         </Switch>
       </Router>
