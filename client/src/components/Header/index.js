@@ -27,7 +27,7 @@ const Wrapper = styled.div`
   width: 100%;
   border-bottom: 1px solid ${COLORS.border};
   background-color: white;
-  box-shadow: 4px 3px 52px -64px rgba(0, 0, 0, 0.75);
+  box-shadow: 4px 25px 192px -60px rgba(0, 0, 0, 0.75);
 `;
 
 const StoreName = styled.h1`

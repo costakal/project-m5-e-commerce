@@ -6,7 +6,7 @@ import { useSelector, useDispatch } from "react-redux";
 import CartItem from "./CartItem";
 import { toggleCartModal, updateCartSubtotal } from "../../actions";
 
-const Cart = () => {
+const Cart = ({ cartQuantity }) => {
   const dispatch = useDispatch();
   const { showCart, cartItems, subtotal } = useSelector(
     (state) => state.cartReducer
@@ -32,6 +32,7 @@ const Cart = () => {
           <Mask onClick={handleClose} />
           <CartContent>
             <button onClick={handleClose}>X</button>
+            <p>{cartQuantity} items in Cart</p>
             {cartItems.length === 0 && <p>Your cart is empty</p>}
             {cartItems.map((item) => (
               <CartItem item={item} key={`cart-item-${item._id}`} />
