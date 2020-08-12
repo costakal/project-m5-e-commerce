@@ -54,11 +54,12 @@ export default function cartReducer(state = initialState, action) {
         cartItems: newCart,
       };
     case "UPDATE-QUANTITY-BY-INPUT-IN-CART":
+      console.log(action.quantity);
       newCart = state.cartItems.map((item) => {
         if (action.item._id === item._id) {
           return {
             ...item,
-            quantity: action.quantity,
+            quantity: Number(action.quantity),
           };
         } else return item;
       });

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
 
@@ -14,14 +15,15 @@ const Cart = () => {
   const handleClose = () => dispatch(toggleCartModal());
 
   useEffect(() => {
+    let subtotal = 0.0;
     if (cartItems.length > 0) {
-      let subtotal = cartItems.reduce(
+      subtotal = cartItems.reduce(
         (acc, item) =>
           acc + Number(cartItems[0].price.replace("$", "")) * item.quantity,
         0
       );
-      dispatch(updateCartSubtotal(subtotal));
     }
+    dispatch(updateCartSubtotal(subtotal));
   }, [cartItems]);
   return (
     <>
@@ -38,7 +40,7 @@ const Cart = () => {
               Subtotal: <span>{subtotal}</span>
             </p>
             <button onClick={handleClose}>Continue Shopping</button>
-            <button>Checkout</button>
+            <Link to="/checkout">Checkout</Link>
           </CartContent>
         </CartBox>
       )}

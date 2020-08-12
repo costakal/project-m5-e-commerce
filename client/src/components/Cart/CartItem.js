@@ -32,11 +32,13 @@ const CartItem = ({ item }) => {
         >
           -
         </button>
-        <input
+        <Input
+          type="number"
           value={cartItemStoreObj.quantity}
-          // onChange={(e) =>
-          //   dispatch(updateQuantityByInputInCart(item, e.target.value))
-          // }
+          onChange={(e) => {
+            console.log(e.target.value);
+            dispatch(updateQuantityByInputInCart(item, e.target.value));
+          }}
         />
         <button onClick={() => dispatch(addExistingItemToCart(item))}>+</button>
         <button onClick={() => dispatch(removeItemFromCart(item))}>X</button>
@@ -49,4 +51,22 @@ export default CartItem;
 
 const ItemBox = styled.div`
   border: 1px solid black;
+`;
+
+const Input = styled.input`
+  width: 30px;
+  height: 30px;
+  text-align: center;
+
+  /* Chrome, Safari, Edge, Opera */
+  &::-webkit-outer-spin-button,
+  &::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  /* Firefox */
+  &[type="number"] {
+    -moz-appearance: textfield;
+  }
 `;

@@ -1,10 +1,44 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 
 import { HEADER_HEIGHT } from "../../constants";
 import Confirmation from "./Confirmation";
+import { useSelector } from "react-redux";
+import { fetchData } from "../../handlers";
+import { toggleCartModal } from "../../actions";
+import { useDispatch } from "react-redux";
 
 const Checkout = () => {
+  const dispatch = useDispatch();
+  const { cartItems, subtotal } = useSelector((state) => state.cartReducer);
+  console.log(cartItems);
+
+  useEffect(() => {
+    dispatch(toggleCartModal());
+  }, []);
+
+  const handleConfirmPurchase = () => {
+    const reqObj = {
+      method: "PUT",
+      body: {
+        order: [
+          {
+            itemId: "6544",
+            quantity: "2",
+          },
+        ],
+      },
+    };
+
+    fetch("http://localhost:3000/order", reqObj).then((res) =>
+      console.log(res)
+    );
+
+    // fetchData("http://localhost:3000/order", reqObj).then((res) =>
+    //   console.log(res)
+    // );
+  };
+
   return (
     <Wrapper>
       <h2>Contact Information</h2>
@@ -28,8 +62,24 @@ const Checkout = () => {
       <h3>Payment Information</h3>
       <input placeholder="Credit Card Number" />
       <input placeholder="Security Code" />
-      <button>Confirm Purchase</button>
-      <Confirmation />
+      <button onClick={() => handleConfirmPurchase()}>Confirm Purchase</button>
+      {/* <Confirmation /> */}
+      <div>
+        {cartItems.map((item) => {
+          return (
+            <>
+              <p>
+                <span>Quantity:{item.quantity}</span>
+                Item:{item.name}
+                <span>
+                  Price:{" "}
+                  {Number(cartItems[0].price.replace("$", "")) * item.quantity}
+                </span>
+              </p>
+            </>
+          );
+        })}
+      </div>
     </Wrapper>
   );
 };

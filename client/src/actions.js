@@ -37,7 +37,7 @@ export const decreaseItemFromCart = (item) => ({
 });
 
 export const updateQuantityByInputInCart = (item, quantity) => ({
-  type: "UPDATE-QUANTITY-BY-INPUT-CART",
+  type: "UPDATE-QUANTITY-BY-INPUT-IN-CART",
   item: item,
   quantity: quantity,
 });
