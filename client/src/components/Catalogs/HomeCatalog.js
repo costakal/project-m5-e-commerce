@@ -1,39 +1,40 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
 
 import CatalogItem from "../Item/CatalogItem";
 import Loading from "../Loading";
-import { HEADER_HEIGHT, FEATURED_HEIGHT } from "../../constants";
+import { HEADER_HEIGHT } from "../../constants";
 import Companies from "../Lists/Companies";
 import FeaturedItems from "./FeaturedItems";
+import ItemsWrapper from "../Item/ItemsWrapper";
 
 const HomeCatalog = () => {
-  const [visibleItems, setVisibleItems] = useState(4);
+  const [visibleItems, setVisibleItems] = useState(6);
   const items = useSelector((state) => state.itemsReducer.items);
   const status = useSelector((state) => state.itemsReducer.status);
 
-  const showMore = () => setVisibleItems(visibleItems + 4);
+  const showMore = () => setVisibleItems(visibleItems + 3);
 
   return (
     <>
       {status === "ready" ? (
-        <>
+        <Wrapper>
           <FeaturesTitle>Featured Items</FeaturesTitle>
           <FeaturedItems />
-          <Catalog>
+          <ItemsWrapper>
             {items.items.slice(0, visibleItems).map((item) => (
-              <StyledLink
-                to={`/items/${item._id}`}
+              <CatalogItem
+                item={item}
+                link={`/items/${item._id}`}
                 key={`home-catalog-${item._id}`}
-              >
-                <CatalogItem item={item} />
-              </StyledLink>
+              />
             ))}
-            <button onClick={showMore}>Load More</button>
-          </Catalog>
-        </>
+          </ItemsWrapper>
+          <LoadWrapper>
+            <LoadButton onClick={showMore}>Load More</LoadButton>
+          </LoadWrapper>
+        </Wrapper>
       ) : (
         <Loading />
       )}
@@ -42,20 +43,24 @@ const HomeCatalog = () => {
   // eslint-disable-next-line
 };
 
-const FeaturesTitle = styled.h2`
-  position: absolute;
-  top: ${HEADER_HEIGHT};
+const Wrapper = styled.div`
+  margin-top: 125px;
+  padding: 20px;
 `;
 
-const Catalog = styled.div`
+const FeaturesTitle = styled.h2``;
+
+const LoadWrapper = styled.div`
   display: flex;
-  flex-wrap: wrap;
-  position: absolute;
-  top: ${FEATURED_HEIGHT};
+  justify-content: center;
+  align-items: center;
+  padding: 40px 0;
 `;
 
-const StyledLink = styled(Link)`
-  width: 30%;
+const LoadButton = styled.button`
+  width: 100px;
+  padding: 10px 0;
+  background: none;
 `;
 
 export default HomeCatalog;

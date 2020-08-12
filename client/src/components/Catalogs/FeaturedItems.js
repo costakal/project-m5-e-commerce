@@ -4,7 +4,6 @@ import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import { useSelector } from "react-redux";
 
-import { HEADER_HEIGHT } from "../../constants";
 import Loading from "../Loading";
 
 const FeaturedItems = () => {
@@ -72,9 +71,6 @@ const FeaturedItems = () => {
 export default FeaturedItems;
 
 const Wrapper = styled.div`
-  position: absolute;
-  top: ${HEADER_HEIGHT};
-  height: 500px;
   width: 100%;
   padding: 40px 0px;
   div {
