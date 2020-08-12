@@ -2,7 +2,6 @@ import React from "react";
 import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
 
-<<<<<<< Updated upstream
 import {
   addExistingItemToCart,
   removeItemFromCart,
@@ -16,9 +15,6 @@ const CartItem = ({ item }) => {
   const cartItemStoreObj = cartItems.find(
     (element) => element._id === item._id
   );
-=======
-const CartItem = ({ item }) => {
->>>>>>> Stashed changes
   return (
     <>
       <ItemBox>
@@ -27,7 +23,6 @@ const CartItem = ({ item }) => {
         <p>
           Price <span>{item.price}</span>
         </p>
-<<<<<<< Updated upstream
         <button
           onClick={() =>
             cartItemStoreObj.quantity > 1
@@ -47,12 +42,6 @@ const CartItem = ({ item }) => {
         />
         <button onClick={() => dispatch(addExistingItemToCart(item))}>+</button>
         <button onClick={() => dispatch(removeItemFromCart(item))}>X</button>
-=======
-        <button>-</button>
-        <input value="1" />
-        <button>+</button>
-        <CloseButton>X</CloseButton>
->>>>>>> Stashed changes
       </ItemBox>
     </>
   );

@@ -9,7 +9,7 @@ const Header = () => {
   return (
     <Wrapper style={{ zIndex: "1001" }}>
       <StoreName>
-        <Link exact to="/">
+        <Link exact="true" to="/">
           WATCHCAVE
         </Link>
       </StoreName>

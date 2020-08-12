@@ -5,15 +5,11 @@ import styled from "styled-components";
 import Loading from "../Loading";
 import { HEADER_HEIGHT } from "../../constants";
 import { useSelector, useDispatch } from "react-redux";
-<<<<<<< Updated upstream
 import {
   addItemToCart,
   toggleCartModal,
   addExistingItemToCart,
 } from "../../actions";
-=======
-import { addItemToCart, toggleCartModal } from "../../actions";
->>>>>>> Stashed changes
 
 const ItemDetails = () => {
   const dispatch = useDispatch();
@@ -23,7 +19,6 @@ const ItemDetails = () => {
   const [itemData, setItemData] = useState(null);
 
   const handleAddToCart = (item) => {
-<<<<<<< Updated upstream
     cartItems.findIndex((element) => element._id === item._id) < 0
       ? dispatch(addItemToCart(item))
       : dispatch(addExistingItemToCart(item));
@@ -31,11 +26,6 @@ const ItemDetails = () => {
     dispatch(toggleCartModal());
   };
   console.log(cartItems);
-=======
-    dispatch(addItemToCart(item));
-    dispatch(toggleCartModal());
-  };
->>>>>>> Stashed changes
 
   useEffect(() => {
     if (items) {

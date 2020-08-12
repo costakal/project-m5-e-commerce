@@ -8,14 +8,9 @@ import { toggleCartModal, updateCartSubtotal } from "../../actions";
 
 const Cart = ({ cartQuantity }) => {
   const dispatch = useDispatch();
-<<<<<<< Updated upstream
   const { showCart, cartItems, subtotal } = useSelector(
     (state) => state.cartReducer
   );
-=======
-  const showCart = useSelector((state) => state.cartReducer.showCart);
-  const cartItems = useSelector((state) => state.cartReducer.cartItems);
->>>>>>> Stashed changes
 
   const handleClose = () => dispatch(toggleCartModal());
 
