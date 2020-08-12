@@ -60,6 +60,10 @@ export const updateQuantityByInputInCart = (item, quantity) => ({
   quantity: quantity,
 });
 
+export const emptyCart = () => ({
+  type: "EMPTY-CART",
+});
+
 export const updateCartSubtotal = (subtotal) => ({
   type: "UPDATE-CART-SUBTOTAL",
   subtotal: subtotal,

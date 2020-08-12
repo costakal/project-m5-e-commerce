@@ -21,7 +21,7 @@ export default function cartReducer(state = initialState, action) {
           },
         ],
       };
-    case "ADD-EXISTING-ITEM-TO-CART":
+    case "ADD-EXISTING-ITEM-TO-CART": // used for the catalog items AND the + button in cart item
       newCart = state.cartItems.map((item) => {
         if (action.item._id === item._id) {
           return {
@@ -34,7 +34,7 @@ export default function cartReducer(state = initialState, action) {
         ...state,
         cartItems: newCart,
       };
-    case "REMOVE-ITEM-FROM-CART":
+    case "REMOVE-ITEM-FROM-CART": // removes all quantities of the item
       newCart = state.cartItems.filter((item) => action.item._id !== item._id);
       return {
         ...state,
@@ -67,7 +67,12 @@ export default function cartReducer(state = initialState, action) {
         ...state,
         cartItems: newCart,
       };
-    case "UPDATE-CART-SUBTOTAL":
+    case "EMPTY-CART": // after purchase goes thru
+      return {
+        ...state,
+        cartItems: [],
+      };
+    case "UPDATE-CART-SUBTOTAL": // called in cart/index
       return {
         ...state,
         subtotal: action.subtotal,
