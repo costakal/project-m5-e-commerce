@@ -19,6 +19,8 @@ import FeaturedItems from "./Catalogs/FeaturedItems";
 import Checkout from "./Cart/Checkout";
 import CompanyFeed from "./Lists/CompanyFeed";
 
+import Typeahead from "../Typeahead";
+
 function App() {
   UseFetchData(requestAllItems, receiveAllItems, "http://localhost:3000/items");
   UseFetchData(
@@ -51,8 +53,8 @@ function App() {
           <Route path="/categories/:categoryName">
             <CategoryFeed />
           </Route>
-          <Route exact path="/featured">
-            <FeaturedItems />
+          <Route exact path="/typeahead">
+            <Typeahead />
           </Route>
           <Route exact path="/checkout">
             <Checkout />
