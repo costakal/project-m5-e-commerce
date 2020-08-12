@@ -1,13 +1,18 @@
 import React from "react";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 import NavBar from "./NavBar";
-import { HEADER_HEIGHT } from "../../constants";
+import { HEADER_HEIGHT, FONT_STYLES, COLORS } from "../../constants";
 
 const Header = () => {
   return (
-    <Wrapper style={{ zIndex: "1" }}>
-      <StoreName>The Store Name</StoreName>
+    <Wrapper style={{ zIndex: "1001" }}>
+      <StoreName>
+        <Link exact to="/">
+          WATCHCAVE
+        </Link>
+      </StoreName>
       <NavBar />
     </Wrapper>
   );
@@ -20,11 +25,24 @@ const Wrapper = styled.div`
   top: 0;
   height: ${HEADER_HEIGHT};
   width: 100%;
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid ${COLORS.border};
   background-color: white;
+  box-shadow: 4px 3px 52px -64px rgba(0, 0, 0, 0.75);
 `;
 
 const StoreName = styled.h1`
+  display: flex;
+  justify-content: center;
+  font-family: ${FONT_STYLES.header};
+  font-size: 40px;
   padding: 20px;
   text-align: center;
+  a {
+    transition: 0.3s;
+    text-decoration: none;
+    &:hover {
+      color: ${COLORS.primary};
+      cursor: pointer;
+    }
+  }
 `;

@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import { NavLink, Link } from "react-router-dom";
 import styled from "styled-components";
+
 import CartButton from "./CartButton";
 import hamburger from "../../assets/hamburger.png";
-import Companies from "../Lists/Companies";
+import { COLORS } from "../../constants";
 
 const NavBar = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -15,8 +16,19 @@ const NavBar = () => {
           <img src={hamburger} onClick={() => setIsVisible(!isVisible)} />
         </Hamburger>
         <WebNavMenu>
-          <NavLink to="/">Products</NavLink>
-          <NavLink to="/companieslist">Companies</NavLink>
+          <NavLink
+            activeStyle={{ color: COLORS.primary, transition: "1s" }}
+            exact
+            to="/"
+          >
+            PRODUCTS
+          </NavLink>
+          <NavLink
+            activeStyle={{ color: COLORS.primary, transition: "1s" }}
+            to="/companieslist"
+          >
+            COMPANIES
+          </NavLink>
         </WebNavMenu>
         <CartButton />
       </Wrapper>
@@ -33,14 +45,36 @@ const NavBar = () => {
 export default NavBar;
 
 const Wrapper = styled.div`
+  height: 45px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 0px 75px;
+  @media (max-width: 768px) {
+    padding: 0px 5px;
+  }
   button {
     margin: 20px 40px;
   }
   a {
-    padding: 0px 40px;
+    position: relative;
+    padding: 0px 40px 13px;
+    &:after {
+      background: none repeat scroll 0 0 transparent;
+      bottom: 0;
+      content: "";
+      display: block;
+      height: 4px;
+      left: 50%;
+      position: absolute;
+      background: ${COLORS.primary};
+      transition: width 0.3s ease 0s, left 0.3s ease 0s;
+      width: 0;
+    }
+    &:hover:after {
+      width: 100%;
+      left: 0;
+    }
   }
 `;
 
