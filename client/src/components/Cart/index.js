@@ -11,11 +11,11 @@ const Cart = ({ cartQuantity }) => {
   const { showCart, cartItems, subtotal } = useSelector(
     (state) => state.cartReducer
   );
-
   const handleClose = () => dispatch(toggleCartModal());
 
   useEffect(() => {
     let subtotal = 0.0;
+
     if (cartItems.length > 0) {
       subtotal = cartItems.reduce(
         (acc, item) =>
@@ -41,7 +41,12 @@ const Cart = ({ cartQuantity }) => {
               Subtotal: <span>{subtotal}</span>
             </p>
             <button onClick={handleClose}>Continue Shopping</button>
-            <Link to="/checkout">Checkout</Link>
+            <StyledLink
+              emptyCart={cartItems.length > 0 ? false : true}
+              to={cartItems.length > 0 ? "/checkout" : "/"}
+            >
+              Checkout
+            </StyledLink>
           </CartContent>
         </CartBox>
       )}
@@ -83,4 +88,8 @@ const CartContent = styled.div`
   z-index: 100;
   margin-left: 25px;
   margin-right: 25px;
+`;
+
+const StyledLink = styled(Link)`
+  cursor: ${(props) => (props.emptyCart ? "not-allowed" : "pointer")};
 `;

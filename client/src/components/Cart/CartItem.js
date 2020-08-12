@@ -48,6 +48,7 @@ const CartItem = ({ item }) => {
 };
 
 export default CartItem;
+
 const Img = styled.img`
   border-radius: 35px;
 `;
