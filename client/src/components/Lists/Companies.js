@@ -1,14 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import styled from "styled-components";
 import { HEADER_HEIGHT } from "../../constants";
 import { Link } from "react-router-dom";
-import { fetchData } from "../../handlers";
-import { requestAllItems, receiveAllItems } from "../../actions";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import Loading from "../Loading";
 import CompanyElements from "./CompanyElement";
-import _ from "lodash";
-import chunk from "lodash/chunk";
 
 const Companies = () => {
   const companies = useSelector((state) => state.companiesReducer.companies);
@@ -24,15 +20,23 @@ const Companies = () => {
     return (
       <>
         <Wrapper>
-          {companies.companies.map((company) => (
-            <StyledLink
-              to={`/companies/${company._id}`}
-              key={`companies-${company.name}`}
-            >
-              {/* <Comp>{company.name}</Comp> */}
-              <CompanyElements companies={company} />
-            </StyledLink>
-          ))}
+          {companies.companies
+            .sort(function (a, b) {
+              var nameA = a.name.toLowerCase(),
+                nameB = b.name.toLowerCase();
+              if (nameA < nameB) return -1;
+              if (nameA > nameB) return 1;
+              return 0;
+            })
+            .map((company) => (
+              <StyledLink
+                to={`/companies/${company._id}`}
+                key={`companies-${company.name}`}
+              >
+                {/* <Comp>{company.name}</Comp> */}
+                <CompanyElements companies={company} />
+              </StyledLink>
+            ))}
         </Wrapper>
       </>
     );
@@ -44,17 +48,22 @@ const Companies = () => {
 const StyledLink = styled(Link)`
   display: flex;
   font-size: 20px;
+  transition-property: all;
+  transition-duration: 0.2s;
+  transition-timing-function: ease-in;
   :hover {
     color: gold;
     font-weight: bold;
-    background-color: #29282895;
+    -moz-box-shadow: 10px 10px 5px 0px rgba(242, 242, 242, 1);
+    box-shadow: 10px 10px 5px 0px rgba(242, 242, 242, 1);
+    border-radius: 24px;
   }
 `;
 const Wrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
   position: absolute;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
 
   top: ${HEADER_HEIGHT};

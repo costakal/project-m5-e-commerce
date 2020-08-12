@@ -12,9 +12,14 @@ import HomeCatalog from "./Catalogs/HomeCatalog";
 import ItemDetails from "./Item/ItemDetails";
 import Companies from "./Lists/Companies";
 import UseFetchData from "../Hooks/use-FetchData";
+<<<<<<< Updated upstream
 import CompanyDetails from "./Lists/CompanyDetail";
 import FeaturedItems from "./Catalogs/FeaturedItems";
 import Checkout from "./Cart/Checkout";
+=======
+import CompanyFeed from "./Lists/CompanyFeed";
+import StoreFeed from "./Lists/CompanyFeed";
+>>>>>>> Stashed changes
 
 function App() {
   UseFetchData(requestAllItems, receiveAllItems, "http://localhost:3000/items");
@@ -42,7 +47,7 @@ function App() {
             <Companies />
           </Route>
           <Route exact path="/companies/:companyId">
-            <CompanyDetails />
+            <CompanyFeed />
           </Route>
           <Route exact path="/featured">
             <FeaturedItems />

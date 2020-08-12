@@ -25,7 +25,6 @@ const Wrapper = styled.div`
   align-content: center;
 `;
 const Comp = styled.div`
-  border: 1px solid;
   width: 120px;
   height: 120px;
   display: flex;

@@ -8,9 +8,14 @@ import { toggleCartModal, updateCartSubtotal } from "../../actions";
 
 const Cart = ({ cartQuantity }) => {
   const dispatch = useDispatch();
+<<<<<<< Updated upstream
   const { showCart, cartItems, subtotal } = useSelector(
     (state) => state.cartReducer
   );
+=======
+  const showCart = useSelector((state) => state.cartReducer.showCart);
+  const cartItems = useSelector((state) => state.cartReducer.cartItems);
+>>>>>>> Stashed changes
 
   const handleClose = () => dispatch(toggleCartModal());
 
@@ -76,8 +81,11 @@ const Mask = styled.div`
 
 const CartContent = styled.div`
   position: relative;
-  width: 100%;
+  /* width: 100%; */
   min-height: 100%;
-  background: white;
+  border-radius: 35px;
+  background: #f5f7fa;
   z-index: 100;
+  margin-left: 25px;
+  margin-right: 25px;
 `;

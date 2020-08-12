@@ -1,10 +1,14 @@
 import React from "react";
 import styled from "styled-components";
 import { useDispatch } from "react-redux";
+<<<<<<< Updated upstream
 import { useSelector } from "react-redux";
 import { shoppingCart } from "react-icons-kit/feather/shoppingCart";
 import { Icon } from "react-icons-kit";
 
+=======
+import Cart from "../Cart";
+>>>>>>> Stashed changes
 import { toggleCartModal } from "../../actions";
 import { COLORS, FONT_STYLES } from "../../constants";
 import Cart from "../Cart";

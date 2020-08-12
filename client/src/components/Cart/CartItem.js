@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
 
+<<<<<<< Updated upstream
 import {
   addExistingItemToCart,
   removeItemFromCart,
@@ -15,14 +16,18 @@ const CartItem = ({ item }) => {
   const cartItemStoreObj = cartItems.find(
     (element) => element._id === item._id
   );
+=======
+const CartItem = ({ item }) => {
+>>>>>>> Stashed changes
   return (
     <>
       <ItemBox>
-        <img src={item.imageSrc} />
+        <Img src={item.imageSrc} />
         <p>{item.name}</p>
         <p>
           Price <span>{item.price}</span>
         </p>
+<<<<<<< Updated upstream
         <button
           onClick={() =>
             cartItemStoreObj.quantity > 1
@@ -42,15 +47,33 @@ const CartItem = ({ item }) => {
         />
         <button onClick={() => dispatch(addExistingItemToCart(item))}>+</button>
         <button onClick={() => dispatch(removeItemFromCart(item))}>X</button>
+=======
+        <button>-</button>
+        <input value="1" />
+        <button>+</button>
+        <CloseButton>X</CloseButton>
+>>>>>>> Stashed changes
       </ItemBox>
     </>
   );
 };
 
 export default CartItem;
-
+const Img = styled.img`
+  border-radius: 35px;
+`;
+const CloseButton = styled.button`
+  border: 0px;
+`;
 const ItemBox = styled.div`
-  border: 1px solid black;
+  margin: 4px;
+  border: 2px solid black;
+  margin-left: 25px;
+  margin-right: 25px;
+  border-radius: 35px;
+  :hover {
+    background-color: #ededed;
+  }
 `;
 
 const Input = styled.input`
