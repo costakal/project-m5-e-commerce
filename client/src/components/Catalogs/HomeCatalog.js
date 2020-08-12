@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 
 import CatalogItem from "../Item/CatalogItem";
 import Loading from "../Loading";
-import { HEADER_HEIGHT } from "../../constants";
+import { HEADER_HEIGHT, FONT_STYLES } from "../../constants";
 import Companies from "../Lists/Companies";
 import FeaturedItems from "./FeaturedItems";
 import ItemsWrapper from "../Item/ItemsWrapper";
@@ -19,22 +19,24 @@ const HomeCatalog = () => {
   return (
     <>
       {status === "ready" ? (
-        <Wrapper>
+        <>
           <FeaturesTitle>Featured Items</FeaturesTitle>
           <FeaturedItems />
-          <ItemsWrapper>
-            {items.items.slice(0, visibleItems).map((item) => (
-              <CatalogItem
-                item={item}
-                link={`/items/${item._id}`}
-                key={`home-catalog-${item._id}`}
-              />
-            ))}
-          </ItemsWrapper>
-          <LoadWrapper>
-            <LoadButton onClick={showMore}>Load More</LoadButton>
-          </LoadWrapper>
-        </Wrapper>
+          <Wrapper>
+            <ItemsWrapper>
+              {items.items.slice(0, visibleItems).map((item) => (
+                <CatalogItem
+                  item={item}
+                  link={`/items/${item._id}`}
+                  key={`home-catalog-${item._id}`}
+                />
+              ))}
+            </ItemsWrapper>
+            <LoadWrapper>
+              <LoadButton onClick={showMore}>Load More</LoadButton>
+            </LoadWrapper>
+          </Wrapper>
+        </>
       ) : (
         <Loading />
       )}
@@ -43,12 +45,17 @@ const HomeCatalog = () => {
   // eslint-disable-next-line
 };
 
-const Wrapper = styled.div`
-  margin-top: 125px;
-  padding: 20px;
+const FeaturesTitle = styled.h2`
+  margin-top: ${HEADER_HEIGHT};
+  padding: 20px 0;
+  font-family: ${FONT_STYLES.header};
+  font-size: 1.8em;
+  text-align: center;
 `;
 
-const FeaturesTitle = styled.h2``;
+const Wrapper = styled.div`
+  padding: 0 20px 40px 40px;
+`;
 
 const LoadWrapper = styled.div`
   display: flex;

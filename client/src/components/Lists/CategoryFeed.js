@@ -8,6 +8,7 @@ import { requestCategory, receiveCategory } from "../../actions";
 
 import ItemsWrapper from "../Item/ItemsWrapper";
 import CatalogItem from "../Item/CatalogItem";
+import { HEADER_HEIGHT } from "../../constants";
 import Loading from "../Loading";
 
 const CategoryFeed = () => {
@@ -39,8 +40,8 @@ const CategoryFeed = () => {
 };
 
 const Wrapper = styled.div`
-  margin-top: 125px;
-  padding: 40px 0 40px 40px;
+  margin-top: ${HEADER_HEIGHT};
+  padding: 40px 20px 40px 40px;
 `;
 
 const Heading = styled.div`
