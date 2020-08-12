@@ -16,6 +16,24 @@ export const receiveAllCompanies = (companies) => ({
   companies: companies,
 });
 
+export const requestAllCategories = () => ({
+  type: "REQUEST-ALL-CATEGORIES",
+});
+
+export const receiveAllCategories = (categories) => ({
+  type: "RECEIVE-ALL-CATEGORIES",
+  categories: categories,
+});
+
+export const requestCategory = () => ({
+  type: "REQUEST-CATEGORY",
+});
+
+export const receiveCategory = (category) => ({
+  type: "RECEIVE-CATEGORY",
+  category: category,
+});
+
 export const addItemToCart = (item) => ({
   type: "ADD-ITEM-TO-CART",
   item: item,
