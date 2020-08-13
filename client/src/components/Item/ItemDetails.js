@@ -54,8 +54,15 @@ const ItemDetails = () => {
         <Wrapper>
           <LeftSide>
             <h2>{itemData.name}</h2>
-            <p>Sold by: {getCompanyName()}</p>
-            <p>Website: {getCompanyUrl()}</p>
+            <p>
+              Sold by:{" "}
+              <Link to={`/companies/${itemData.companyId}`}>
+                {getCompanyName()}
+              </Link>
+            </p>
+            <p>
+              Website: <a href={getCompanyUrl()}>{getCompanyUrl()}</a>
+            </p>
             <Purchase>
               <p>{itemData.numInStock} left in stock </p>
               <CartButton onClick={() => handleAddToCart(itemData)}>
@@ -103,6 +110,13 @@ const LeftSide = styled.div`
   }
   p {
     font-size: 16px;
+    padding-bottom: 5px;
+  }
+  a {
+    transition: 0.2s;
+    &:hover {
+      color: ${COLORS.primary};
+    }
   }
 `;
 
