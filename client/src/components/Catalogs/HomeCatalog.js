@@ -9,6 +9,8 @@ import Companies from "../Lists/Companies";
 import FeaturedItems from "./FeaturedItems";
 import ItemsWrapper from "../Item/ItemsWrapper";
 
+import Button from "../UnstyledButton";
+
 const HomeCatalog = () => {
   const [visibleItems, setVisibleItems] = useState(6);
   const items = useSelector((state) => state.itemsReducer.items);
@@ -33,7 +35,7 @@ const HomeCatalog = () => {
               ))}
             </ItemsWrapper>
             <LoadWrapper>
-              <LoadButton onClick={showMore}>Load More</LoadButton>
+              <Button onClick={showMore}>Load More</Button>
             </LoadWrapper>
           </Wrapper>
         </>
@@ -62,12 +64,6 @@ const LoadWrapper = styled.div`
   justify-content: center;
   align-items: center;
   padding: 40px 0;
-`;
-
-const LoadButton = styled.button`
-  width: 100px;
-  padding: 10px 0;
-  background: none;
 `;
 
 export default HomeCatalog;
