@@ -52,9 +52,13 @@ table {
 }
 /* ------------ END OF CSS RESET ------------ */
 
+html {
+	scroll-padding-top: 125px;
+	scroll-behavior: smooth;
+}
+
 body{
 	font-family: 'Open Sans', sans-serif;
-	scroll-behavior: smooth;
 }
 
 `;
