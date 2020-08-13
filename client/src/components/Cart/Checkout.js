@@ -162,6 +162,10 @@ const Wrapper = styled.div`
 const Form = styled.form`
   display: flex;
 
+  @media (max-width: 700px) {
+    flex-direction: column;
+  }
+
   div {
     display: flex;
     flex-direction: column;
