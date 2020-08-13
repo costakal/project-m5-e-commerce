@@ -24,6 +24,7 @@ const HomeCatalog = () => {
         <>
           <FeaturesTitle>Featured Items</FeaturesTitle>
           <FeaturedItems />
+          <ContentTitle>Browse our Collection</ContentTitle>
           <Wrapper>
             <ItemsWrapper>
               {items.items.slice(0, visibleItems).map((item) => (
@@ -55,6 +56,11 @@ const FeaturesTitle = styled.h2`
   text-align: center;
 `;
 
+const ContentTitle = styled.h2`
+  padding: 25px 50px;
+  font-family: ${FONT_STYLES.header};
+  font-size: 1.8em;
+`;
 const Wrapper = styled.div`
   padding: 0 20px 40px 40px;
 `;

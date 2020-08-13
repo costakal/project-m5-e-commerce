@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
-
+import UnstyledButton from "../UnstyledButton";
+import { COLORS } from "../../constants";
 import CartItem from "./CartItem";
 import { toggleCartModal, updateCartSubtotal } from "../../actions";
 
@@ -31,8 +32,15 @@ const Cart = ({ cartQuantity }) => {
         <CartBox>
           <Mask onClick={handleClose} />
           <CartContent>
-            <button onClick={handleClose}>X</button>
-            <p>{cartQuantity} items in Cart</p>
+            <CartHeader>
+              <p>
+                You have {cartQuantity} item
+                {cartQuantity === 0 || cartQuantity > 1 ? <span>s</span> : ""}
+                <span> in your Cart</span>
+              </p>
+              <CloseButton onClick={handleClose}>X</CloseButton>
+            </CartHeader>
+
             {cartItems.length === 0 && <p>Your cart is empty</p>}
             {cartItems.map((item) => (
               <CartItem item={item} key={`cart-item-${item._id}`} />
@@ -40,13 +48,15 @@ const Cart = ({ cartQuantity }) => {
             <p>
               Subtotal: <span>{subtotal}</span>
             </p>
-            <button onClick={handleClose}>Continue Shopping</button>
-            <StyledLink
-              emptycart={cartItems.length > 0 ? "false" : "true"}
-              to={cartItems.length > 0 ? "/checkout" : "/"}
-            >
-              Checkout
-            </StyledLink>
+            <Options>
+              <button onClick={handleClose}>Continue Shopping</button>
+              <StyledLink
+                emptycart={cartItems.length > 0 ? "false" : "true"}
+                to={cartItems.length > 0 ? "/checkout" : "/"}
+              >
+                Checkout
+              </StyledLink>
+            </Options>
           </CartContent>
         </CartBox>
       )}
@@ -58,14 +68,13 @@ export default Cart;
 
 const CartBox = styled.div`
   position: absolute;
-  z-index: 10;
   top: 0;
   left: 0;
-  min-height: 100%;
   width: 100%;
   max-width: 100%;
-  overflow: hidden;
-  padding: 100px 0px;
+  z-index: 10;
+  max-height: 100vh;
+  overflow-y: auto;
 `;
 
 const Mask = styled.div`
@@ -81,14 +90,44 @@ const Mask = styled.div`
 
 const CartContent = styled.div`
   position: relative;
-  /* width: 100%; */
+  margin: 50px;
   min-height: 100%;
-  border-radius: 35px;
-  background: #f5f7fa;
+  border-radius: 2px;
+  background: white;
   z-index: 100;
-  margin-left: 25px;
-  margin-right: 25px;
+  display: flex;
+  flex-direction: column;
+  p {
+    margin: 20px 40px;
+  }
 `;
+
+const CartHeader = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  p {
+    font-weight: bold;
+    font-size: 20px;
+  }
+`;
+
+const CloseButton = styled(UnstyledButton)`
+  right: 15px;
+  font-size: 16px;
+  padding: 5px 9px;
+  color: black;
+  border: solid black 3px;
+  transition: 0.15s;
+  text-align: center;
+  &:hover {
+    background-color: ${COLORS.primary};
+    border: solid ${COLORS.primary} 3px;
+    color: white;
+  }
+`;
+
+const Options = styled.div``;
 
 const StyledLink = styled(Link)`
   cursor: ${(props) => (props.emptyCart ? "not-allowed" : "pointer")};
