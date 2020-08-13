@@ -55,9 +55,9 @@ const FeaturedItems = () => {
           transitionDuration={500}
         >
           <Feature1>{featuredItem(200)}</Feature1>
-          <Feature2>{featuredItem(6)}</Feature2>
+          <Feature2>{featuredItem(95)}</Feature2>
           <Feature3>{featuredItem(10)}</Feature3>
-          <Feature4>{featuredItem(63)}</Feature4>
+          <Feature4>{featuredItem(26)}</Feature4>
           <Feature5>{featuredItem(29)}</Feature5>
           <Feature6>{featuredItem(40)}</Feature6>
         </Carousel>

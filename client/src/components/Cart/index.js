@@ -46,10 +46,10 @@ const Cart = ({ cartQuantity }) => {
               <CartItem item={item} key={`cart-item-${item._id}`} />
             ))}
             <p>
-              Subtotal: <span>{subtotal}</span>
+              Subtotal: <span style={{ fontWeight: "bold" }}>${subtotal}</span>
             </p>
             <Options>
-              <button onClick={handleClose}>Continue Shopping</button>
+              <StyledLink onClick={handleClose}>Continue Shopping</StyledLink>
               <StyledLink
                 emptycart={cartItems.length > 0 ? "false" : "true"}
                 to={cartItems.length > 0 ? "/checkout" : "/"}
@@ -113,7 +113,6 @@ const CartHeader = styled.div`
 `;
 
 const CloseButton = styled(UnstyledButton)`
-  right: 15px;
   font-size: 16px;
   padding: 5px 9px;
   color: black;
@@ -127,8 +126,12 @@ const CloseButton = styled(UnstyledButton)`
   }
 `;
 
-const Options = styled.div``;
+const Options = styled.div`
+  display: flex;
+  justify-content: space-evenly;
+`;
 
 const StyledLink = styled(Link)`
   cursor: ${(props) => (props.emptyCart ? "not-allowed" : "pointer")};
+  margin: 20px;
 `;

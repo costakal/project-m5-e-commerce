@@ -158,8 +158,14 @@ const RightSide = styled.div`
   display: flex;
   justify-content: center;
   img {
-    padding: 50px 200px 85px;
+    margin: 50px 200px 85px;
     width: 100%;
+    @media (max-width: 1200px) {
+      margin: 50px 120px 85px;
+    }
+    @media (max-width: 980px) {
+      margin: 50px 60px 85px;
+    }
   }
 `;
 
