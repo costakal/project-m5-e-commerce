@@ -10,7 +10,7 @@ import {
   toggleCartModal,
   addExistingItemToCart,
 } from "../../actions";
-import UnstyledButton from "../UnstyledButton";
+import PrimaryButton from "../PrimaryButton";
 
 const ItemDetails = () => {
   const dispatch = useDispatch();
@@ -65,9 +65,13 @@ const ItemDetails = () => {
             </p>
             <Purchase>
               <p>{itemData.numInStock} left in stock </p>
-              <CartButton onClick={() => handleAddToCart(itemData)}>
-                Add to cart
-              </CartButton>
+              {itemData.numInStock > 0 ? (
+                <CartButton onClick={() => handleAddToCart(itemData)}>
+                  Add to cart
+                </CartButton>
+              ) : (
+                <CartButton disabled>Out of stock</CartButton>
+              )}
             </Purchase>
             <Tags>
               <p>Tags:</p>
@@ -120,19 +124,13 @@ const LeftSide = styled.div`
   }
 `;
 
-const CartButton = styled(UnstyledButton)`
-  font-size: 16px;
-  margin: 10px 0px 0px;
-  padding: 12px;
-  color: black;
-  border: solid black 3px;
+const CartButton = styled(PrimaryButton)`
   width: 100%;
-  transition: 0.15s;
-  text-align: center;
-  &:hover {
-    background-color: ${COLORS.primary};
-    border: solid ${COLORS.primary} 3px;
-    color: white;
+  &:disabled {
+    background-color: silver;
+    border: none;
+    color: #fff;
+    cursor: not-allowed;
   }
 `;
 
