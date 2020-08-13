@@ -3,6 +3,7 @@ import styled from "styled-components";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
 import Loading from "../Loading";
 
@@ -30,13 +31,13 @@ const FeaturedItems = () => {
 
   const featuredItem = (index) => {
     return (
-      <>
+      <Link to={`/items/${items.items[index]._id}`}>
         <img src={items.items[index].imageSrc} />
         <div>
-          <h2>{items.items[index].name}</h2>
-          <p>{items.items[index].price}</p>
+          <Name>{items.items[index].name}</Name>
+          <Price>{items.items[index].price}</Price>
         </div>
-      </>
+      </Link>
     );
   };
 
@@ -74,23 +75,22 @@ const Wrapper = styled.div`
   width: 100%;
   padding: 40px 0px;
   div {
-    div {
+    a {
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      div {
-        h2 {
-          text-align: center;
-          padding: 5px 25px;
-        }
-        p {
-          padding-left: 5px;
-          font-weight: bold;
-        }
-      }
     }
   }
+`;
+
+const Name = styled.h2`
+  padding: 20px 40px 10px;
+  text-align: center;
+`;
+const Price = styled.p`
+  text-align: center;
+  font-weight: bold;
 `;
 
 const Feature1 = styled.div``;
