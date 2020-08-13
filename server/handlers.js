@@ -69,17 +69,23 @@ const handleCategory = (req, res) => {
 
 const handlePurchase = (req, res) => {
   const { order } = req.body;
-  let outOfStock = false;
+  let missingStock = false;
+  const missingStockItems = [];
 
   order.forEach((orderItem) => {
     const item = items.find((item) => item._id === orderItem.itemId);
-    item.numInStock < orderItem.quantity && (outOfStock = true);
+    if (item.numInStock < orderItem.quantity) {
+      missingStock = true;
+      missingStockItems.push(item);
+    }
   });
 
-  if (outOfStock === true) {
+  if (missingStock === true) {
     res.status(400).json({
       status: 400,
-      error: "Sorry but one or more items in your order are out of stock.",
+      error:
+        "Sorry but one or more items in your order have insufficient stock.",
+      missingStockItems: missingStockItems,
     });
   } else {
     const confirmation = uuidv4();

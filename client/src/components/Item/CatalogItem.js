@@ -20,13 +20,13 @@ const CatalogItem = ({
     <>
       {status === "ready" ? (
         <WrapperLink to={link}>
-          <h3>{name}</h3>
           <img src={imageSrc} alt={name} />
-          <p>{price}</p>
-          {numInStock > 0 ? <p>In stock</p> : <p>Not in stock</p>}
-          <p>
-            Sold by: <span>{getCompanyName()}</span>
-          </p>
+          <ItemName>{name}</ItemName>
+          <ItemInfo>
+            <Price>{price}</Price>
+            {/* {numInStock > 0 ? <p>In stock</p> : <p>Not in stock</p>} */}
+            <CompanyName>{getCompanyName()}</CompanyName>
+          </ItemInfo>
         </WrapperLink>
       ) : (
         <Loading />
@@ -36,15 +36,18 @@ const CatalogItem = ({
 };
 
 const WrapperLink = styled(Link)`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   img {
-    height: 100px;
+    height: 150px;
   }
 
   box-sizing: border-box;
   width: 100%;
   padding: 20px;
   margin: 40px 20px 0 0;
-  border-radius: 20px;
+  border-radius: 5px;
   box-shadow: 0px 10px 50px lightgrey;
   &:hover {
     box-shadow: 0px 10px 50px silver;
@@ -55,6 +58,25 @@ const WrapperLink = styled(Link)`
   @media (min-width: 1000px) {
     width: calc(33% - 20px);
   }
+`;
+
+const ItemName = styled.h3`
+  font-size: 1.1em;
+  line-height: 1.4;
+  padding: 20px 0 10px;
+`;
+
+const ItemInfo = styled.div`
+  width: 100%;
+`;
+
+const Price = styled.p`
+  font-size: 1.1em;
+  padding: 10px 0;
+`;
+
+const CompanyName = styled.p`
+  font-style: italic;
 `;
 
 export default CatalogItem;
