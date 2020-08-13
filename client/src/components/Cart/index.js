@@ -110,6 +110,11 @@ const CartHeader = styled.div`
     font-weight: bold;
     font-size: 20px;
   }
+  @media (max-width: 768px) {
+    p {
+      font-size: 14px;
+    }
+  }
 `;
 
 const CloseButton = styled(UnstyledButton)`
@@ -129,6 +134,12 @@ const CloseButton = styled(UnstyledButton)`
 const Options = styled.div`
   display: flex;
   justify-content: space-evenly;
+  @media (max-width: 768px) {
+    justify-content: space-around;
+    a {
+      font-size: 14px;
+    }
+  }
 `;
 
 const StyledLink = styled(Link)`

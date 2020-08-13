@@ -26,31 +26,34 @@ const CartItem = ({ item }) => {
             Price <span>{item.price}</span>
           </p>
           <Adjustables>
-            <button
-              onClick={() =>
-                cartItemStoreObj.quantity > 1
-                  ? dispatch(decreaseItemFromCart(item))
-                  : dispatch(removeItemFromCart(item))
-              }
-            >
-              -
-            </button>
-            <Input
-              type="number"
-              value={cartItemStoreObj.quantity}
-              onChange={(e) => {
-                console.log(e.target.value);
-                dispatch(updateQuantityByInputInCart(item, e.target.value));
-              }}
-            />
-            <button
-              onClick={() => {
-                if (cartItemStoreObj.quantity < cartItemStoreObj.numInStock)
-                  dispatch(addExistingItemToCart(item));
-              }}
-            >
-              +
-            </button>
+            <QuantityControls>
+              <button
+                onClick={() =>
+                  cartItemStoreObj.quantity > 1
+                    ? dispatch(decreaseItemFromCart(item))
+                    : dispatch(removeItemFromCart(item))
+                }
+              >
+                -
+              </button>
+              <Input
+                type="number"
+                value={cartItemStoreObj.quantity}
+                onChange={(e) => {
+                  console.log(e.target.value);
+                  dispatch(updateQuantityByInputInCart(item, e.target.value));
+                }}
+              />
+              <button
+                onClick={() => {
+                  if (cartItemStoreObj.quantity < cartItemStoreObj.numInStock)
+                    dispatch(addExistingItemToCart(item));
+                }}
+              >
+                +
+              </button>
+            </QuantityControls>
+
             <button onClick={() => dispatch(removeItemFromCart(item))}>
               X
             </button>
@@ -65,6 +68,10 @@ export default CartItem;
 
 const Img = styled.img`
   padding: 15px;
+  @media (max-width: 768px) {
+    width: 50px;
+    height: 50px;
+  }
 `;
 const CloseButton = styled.button`
   border: 0px;
@@ -79,7 +86,10 @@ const ItemBox = styled.div`
   margin-left: 25px;
   margin-right: 25px;
   transition: 0.2s;
-  :hover {
+  @media (max-width: 768px) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 `;
 
@@ -100,7 +110,17 @@ const Content = styled.div`
   }
 `;
 
-const Adjustables = styled.div``;
+const Adjustables = styled.div`
+  @media (max-width: 768px) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+`;
+const QuantityControls = styled.div`
+  display: flex;
+  align-items: center;
+`;
 
 const Input = styled.input`
   width: 30px;
