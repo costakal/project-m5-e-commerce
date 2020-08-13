@@ -8,6 +8,7 @@ import { fetchData } from "../../handlers";
 import { toggleCartModal } from "../../actions";
 import { useDispatch } from "react-redux";
 import Checkout400 from "../Errors/Checkout400";
+import UnstyledButton from "../UnstyledButton";
 
 const Checkout = () => {
   const dispatch = useDispatch();
@@ -60,22 +61,11 @@ const Checkout = () => {
               <label>Contact Information</label>
               <input placeholder="Email" type="email" required />
               <label>Name</label>
-              <input placeholder="first" required />
-              <input placeholder="last" />
+              <input placeholder="First name" required />
+              <input placeholder="Last name" />
               <label>Payment Information</label>
               <input placeholder="Credit Card Number" />
               <input placeholder="Security Code" />
-              <Promo>
-                <Checkbox type="checkbox" />
-                <span>
-                  I would like to receive and hear about special offers and
-                  promotions
-                </span>
-              </Promo>
-
-              <button disabled={cartItems.length > 0 ? false : true}>
-                Send Order
-              </button>
             </div>
             <div>
               <label>Shipping Address</label>
@@ -87,6 +77,17 @@ const Checkout = () => {
               <input placeholder="Province" />
               <input placeholder="Postal Code" />
               <input placeholder="Phone (Optional)" />
+              <Promo>
+                <Checkbox type="checkbox" />
+                <span>
+                  I would like to receive and hear about special offers and
+                  promotions
+                </span>
+              </Promo>
+
+              <SendButton disabled={cartItems.length > 0 ? false : true}>
+                Send Order
+              </SendButton>
             </div>
           </Form>
         </StyledDiv>
@@ -101,15 +102,12 @@ const Checkout = () => {
         {checkoutCart.map((item) => {
           return (
             <SummaryItem>
-              <ItemStyle>
-                <span>Quantity:{item.quantity}</span>
-                Item:{item.name}
-                <span>
-                  Price:{" "}
-                  {Number(checkoutCart[0].price.replace("$", "")) *
-                    item.quantity}
-                </span>
-              </ItemStyle>
+              <p>
+                <span>{item.name + "  "}</span>
+                Quantity:{" " + item.quantity + "  "}
+                Price:{" "}
+                {Number(checkoutCart[0].price.replace("$", "")) * item.quantity}
+              </p>
             </SummaryItem>
           );
         })}
@@ -132,16 +130,16 @@ const Wrapper = styled.div`
   }
 
   h1 {
-    font-style: ${FONT_STYLES.header};
-    font-weight: bold;
+    font-family: ${FONT_STYLES.header};
     font-size: 1.5em;
-    color: ${COLORS.primary};
-    margin-bottom: 10px;
+    margin: 10px 0;
   }
 
   h2 {
-    font-weight: bold;
     font-size: 1em;
+    font-weight: 700;
+    margin-top: 50px;
+    color: #373737;
   }
 
   input {
@@ -149,11 +147,15 @@ const Wrapper = styled.div`
     height: 20px;
     border-radius: 3px;
     margin-top: 5px;
-    border-style: none none dotted none;
+    border-style: none none solid none;
   }
 
   & > :first-child {
-    padding: 0 100px 0 50px;
+    padding: 0 50px 0 50px;
+  }
+
+  div:first-of-type h1 {
+    margin-top: 20px;
   }
 `;
 
@@ -167,16 +169,19 @@ const Form = styled.form`
   }
 
   label {
+    color: ${COLORS.primary};
     margin: 20px auto 10px auto;
   }
 `;
 
 const SummaryItem = styled.div`
   padding-top: 15px;
-`;
+  color: #373737;
 
-const ItemStyle = styled.p`
-  font-style: ${FONT_STYLES.itemName};
+  span {
+    font-weight: 700;
+    font-family: ${FONT_STYLES.itemName};
+  }
 `;
 
 const Promo = styled.span`
@@ -196,10 +201,26 @@ const StyledDiv = styled.div`
   border-radius: 5px;
   box-shadow: 0px 10px 50px lightgrey;
   border-radius: 8px;
-  margin-bottom: 30px;
+  margin: 30px;
   padding: 10px;
 
   &:hover {
     box-shadow: 0px 10px 50px silver;
+  }
+`;
+
+const SendButton = styled(UnstyledButton)`
+  font-size: 16px;
+  margin: 10px 0px 30px 0;
+  padding: 12px;
+  color: black;
+  border: solid black 3px;
+  width: 100%;
+  transition: 0.15s;
+  text-align: center;
+  &:hover {
+    background-color: ${COLORS.primary};
+    border: solid ${COLORS.primary} 3px;
+    color: white;
   }
 `;
