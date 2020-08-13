@@ -51,6 +51,14 @@ const StyledLink = styled(Link)`
   transition-property: all;
   transition-duration: 0.2s;
   transition-timing-function: ease-in;
+  @media (max-width: 768px) {
+    width: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+  }
+
   :hover {
     color: gold;
     font-weight: bold;

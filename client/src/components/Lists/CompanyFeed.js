@@ -68,6 +68,12 @@ const ItemCard = styled.div`
   transition-property: all;
   transition-duration: 0.2s;
   transition-timing-function: ease-in;
+  @media (max-width: 768px) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+  }
   :hover {
     -moz-box-shadow: 10px 10px 5px 0px rgba(242, 242, 242, 1);
     box-shadow: 10px 10px 5px 0px rgba(242, 242, 242, 1);
