@@ -136,22 +136,16 @@ const WebNavMenu = styled.div`
 //   }
 // `;
 const PageLink = styled(Link)`
-  display: flex;
+  /* display: flex;
   justify-content: center;
   align-items: center;
-  align-content: center;
-  :hover {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    align-content: center;
-  }
+  align-content: center; */
 `;
 
 const Ul = styled.ul`
   display: none;
-  justify-content: center;
-  align-content: flex-start;
+  /* justify-content: center;
+  align-content: flex-start; */
   height: 100vh;
   @media (max-width: 769px) {
     display: flex;
@@ -159,10 +153,7 @@ const Ul = styled.ul`
     transition: all 0.3s ease-in;
     background-color: white;
     flex-flow: column nowrap;
-    justify-content: space-around;
-
-    /* display: flex;
-    align-content: flex-start; */
+    align-content: center;
   }
 `;
 const Li = styled.li`
@@ -172,9 +163,17 @@ const Li = styled.li`
   align-content: flex-start;
   transition-duration: 0.2s;
   transition-timing-function: ease-in;
+  padding: 30px;
   :hover {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
     background-color: grey;
   }
-  div {
+  /* :hover {
+    
   }
+  div {
+  } */
 `;
