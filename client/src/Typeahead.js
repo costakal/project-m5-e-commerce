@@ -45,7 +45,7 @@ const Typeahead = () => {
           <SearchItem
             key={item._id}
             style={{
-              background: isSelected ? COLORS.primary : "transparent",
+              background: isSelected ? COLORS.primary : "white",
             }}
             onMouseEnter={() => setSelectedItemIndex(index)}
             onClick={() => handleSelect(item._id)}
@@ -65,6 +65,7 @@ const Typeahead = () => {
       {status === "ready" ? (
         <Wrapper>
           <SearchBar
+            placeholder="Explore the Cave Here"
             type="text"
             value={value || ""}
             onChange={(ev) => setValue(ev.target.value)}
@@ -101,21 +102,29 @@ const Typeahead = () => {
 export default Typeahead;
 
 const Wrapper = styled.div`
-  position: absolute;
-  top: ${HEADER_HEIGHT};
-  padding: 30px;
+  margin: 30px 0px;
+  z-index: 1005;
 `;
 
 const SearchBar = styled.input`
   padding: 5px 3px;
-  width: 550px;
+  width: 385px;
+  max-width: 100%;
   font-size: 18px;
+  @media (max-width: 768px) {
+    width: 300px;
+  }
 `;
 
 const SearchList = styled.ul`
+  color: black;
+  background: white;
   box-shadow: 1px 10px 26px -8px rgba(0, 0, 0, 0.75);
-  border-radius: 7px;
-  width: 385px;
+  border-radius: 2px;
+  width: 395px;
+  @media (max-width: 768px) {
+    width: 300px;
+  }
 `;
 
 const SearchItem = styled.li`

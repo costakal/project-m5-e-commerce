@@ -51,12 +51,13 @@ const Wrapper = styled.div`
   padding: 20px;
   margin: 40px 20px 0 0;
   border-radius: 5px;
-  box-shadow: 0px 10px 50px lightgrey;
+  box-shadow: 0px 10px 50px ${COLORS.border};
+  transition: 0.2s;
   img {
     height: 150px;
   }
   &:hover {
-    box-shadow: 0px 10px 50px silver;
+    box-shadow: 0px 10px 50px lightgrey;
   }
   @media (min-width: 700px) {
     width: calc(50% - 20px);

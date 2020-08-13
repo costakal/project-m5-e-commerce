@@ -12,6 +12,7 @@ import hero from "../../assets/hero-banner.jpg";
 import { Icon } from "react-icons-kit";
 import { arrowDown } from "react-icons-kit/feather/arrowDown";
 import LoadButton from "../PrimaryButton";
+import Typeahead from "../../Typeahead";
 
 const HomeCatalog = () => {
   const [visibleItems, setVisibleItems] = useState(6);
@@ -26,7 +27,10 @@ const HomeCatalog = () => {
         <>
           <Hero>
             <HeroContent>
-              <ShopHeading>Shop From Your Favourite Brands</ShopHeading>
+              <HeadingSearch>
+                <ShopHeading>Shop From Your Favourite Brands</ShopHeading>
+                <Typeahead />
+              </HeadingSearch>
               <a href="#featured">
                 <Icon icon={arrowDown} size={50} />
               </a>
@@ -84,6 +88,13 @@ const HeroContent = styled.div`
   a {
     color: #fff;
   }
+`;
+
+const HeadingSearch = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 `;
 
 const ShopHeading = styled.h2`
