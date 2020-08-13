@@ -11,7 +11,7 @@ import ItemsWrapper from "../Item/ItemsWrapper";
 import hero from "../../assets/hero-banner.jpg";
 import { Icon } from "react-icons-kit";
 import { arrowDown } from "react-icons-kit/feather/arrowDown";
-import UnstyledButton from "../UnstyledButton";
+import LoadButton from "../PrimaryButton";
 
 const HomeCatalog = () => {
   const [visibleItems, setVisibleItems] = useState(6);
@@ -113,21 +113,6 @@ const LoadWrapper = styled.div`
   justify-content: center;
   align-items: center;
   padding: 40px 0;
-`;
-
-const LoadButton = styled(UnstyledButton)`
-  font-size: 16px;
-  margin: 10px 0px 0px;
-  padding: 12px;
-  color: black;
-  border: solid black 3px;
-  transition: 0.15s;
-  text-align: center;
-  &:hover {
-    background-color: ${COLORS.primary};
-    border: solid ${COLORS.primary} 3px;
-    color: white;
-  }
 `;
 
 export default HomeCatalog;
