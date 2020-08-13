@@ -34,24 +34,19 @@ const NavBar = () => {
         <CartButton />
       </Wrapper>
 
-      <MobileNavMenu>
-        <Ul open={open}>
-          <LinkBox>
-            <Li>
-              <PageLink to="/" onClick={() => setOpen(!open)}>
-                Products
-              </PageLink>
-            </Li>
-          </LinkBox>
-          <LinkBox>
-            <Li>
-              <PageLink to="/companieslist" onClick={() => setOpen(!open)}>
-                Companies
-              </PageLink>
-            </Li>
-          </LinkBox>
-        </Ul>
-      </MobileNavMenu>
+      <Ul open={open}>
+        <Li>
+          <PageLink to="/" onClick={() => setOpen(!open)}>
+            Products
+          </PageLink>
+        </Li>
+
+        <Li>
+          <PageLink to="/companieslist" onClick={() => setOpen(!open)}>
+            Companies
+          </PageLink>
+        </Li>
+      </Ul>
     </>
   );
 };
@@ -67,7 +62,6 @@ const StyledBurger = styled.div`
   flex-flow: column nowrap;
   @media (min-width: 769px) {
     display: none;
-    height: 25vh;
   }
 
   div {
@@ -133,14 +127,14 @@ const WebNavMenu = styled.div`
     display: none;
   }
 `;
-const LinkBox = styled.div`
-  transition-property: all;
-  transition-duration: 0.3s;
-  transition-timing-function: ease-in;
-  :hover {
-    background-color: grey;
-  }
-`;
+// const LinkBox = styled.div`
+//   transition-property: all;
+//   transition-duration: 0.3s;
+//   transition-timing-function: ease-in;
+//   :hover {
+//     background-color: grey;
+//   }
+// `;
 const PageLink = styled(Link)`
   display: flex;
   justify-content: center;
@@ -153,23 +147,34 @@ const PageLink = styled(Link)`
     align-content: center;
   }
 `;
-const MobileNavMenu = styled.div``;
+
 const Ul = styled.ul`
   display: none;
+  justify-content: center;
+  align-content: flex-start;
   height: 100vh;
-  transform: ${({ open }) => (open ? "translateX(0)" : "translateX(-100%)")};
-  transition: all 0.3s ease-in;
   @media (max-width: 769px) {
     display: flex;
-    flex-flow: column nowrap;
+    transform: ${({ open }) => (open ? "translateX(0)" : "translateX(-100%)")};
+    transition: all 0.3s ease-in;
     background-color: white;
+    flex-flow: column nowrap;
+    justify-content: space-around;
+
+    /* display: flex;
+    align-content: flex-start; */
   }
 `;
 const Li = styled.li`
-  height: 15vh;
   font-size: 40px;
   display: flex;
   justify-content: center;
-  align-items: center;
-  align-content: center;
+  align-content: flex-start;
+  transition-duration: 0.2s;
+  transition-timing-function: ease-in;
+  :hover {
+    background-color: grey;
+  }
+  div {
+  }
 `;

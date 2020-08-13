@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import Loading from "../Loading";
 import CompanyElements from "./CompanyElement";
+import { COLORS } from "../../constants";
 
 const Companies = () => {
   const companies = useSelector((state) => state.companiesReducer.companies);
@@ -60,8 +61,8 @@ const StyledLink = styled(Link)`
   }
 
   :hover {
-    color: gold;
-    font-weight: bold;
+    color: ${COLORS.primary};
+    font-weight: 600;
     -moz-box-shadow: 10px 10px 5px 0px rgba(242, 242, 242, 1);
     box-shadow: 10px 10px 5px 0px rgba(242, 242, 242, 1);
     border-radius: 24px;
