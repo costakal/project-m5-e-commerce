@@ -2,6 +2,7 @@ const initialState = {
   cartItems: [],
   showCart: false,
   subtotal: 0,
+  missingItems: [],
 };
 
 export default function cartReducer(state = initialState, action) {
@@ -18,6 +19,7 @@ export default function cartReducer(state = initialState, action) {
             price: action.item.price,
             imageSrc: action.item.imageSrc,
             name: action.item.name,
+            numInStock: action.item.numInStock,
           },
         ],
       };
@@ -81,6 +83,11 @@ export default function cartReducer(state = initialState, action) {
       return {
         ...state,
         showCart: !state.showCart,
+      };
+    case "MISSING-STOCK-ITEMS":
+      return {
+        ...state,
+        missingItems: action.items,
       };
 
     default:

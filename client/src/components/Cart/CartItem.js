@@ -10,14 +10,15 @@ import {
 } from "../../actions";
 
 const CartItem = ({ item }) => {
-  const cartItems = useSelector((state) => state.cartReducer.cartItems);
+  const { cartItems, missingItems } = useSelector((state) => state.cartReducer);
   const dispatch = useDispatch();
   const cartItemStoreObj = cartItems.find(
     (element) => element._id === item._id
   );
+
   return (
     <>
-      <ItemBox>
+      <ItemBox id={item._id} missingItems={missingItems}>
         <Img src={item.imageSrc} />
         <p>{item.name}</p>
         <p>
@@ -40,7 +41,14 @@ const CartItem = ({ item }) => {
             dispatch(updateQuantityByInputInCart(item, e.target.value));
           }}
         />
-        <button onClick={() => dispatch(addExistingItemToCart(item))}>+</button>
+        <button
+          onClick={() => {
+            if (cartItemStoreObj.quantity < cartItemStoreObj.numInStock)
+              dispatch(addExistingItemToCart(item));
+          }}
+        >
+          +
+        </button>
         <button onClick={() => dispatch(removeItemFromCart(item))}>X</button>
       </ItemBox>
     </>
@@ -57,7 +65,10 @@ const CloseButton = styled.button`
 `;
 const ItemBox = styled.div`
   margin: 4px;
-  border: 2px solid black;
+  border: ${(props) =>
+    props.missingItems.find((item) => item._id === props.id) // if item is out of order!
+      ? "2px solid red"
+      : "2px solid black"};
   margin-left: 25px;
   margin-right: 25px;
   border-radius: 35px;

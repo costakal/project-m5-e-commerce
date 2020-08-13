@@ -72,3 +72,8 @@ export const updateCartSubtotal = (subtotal) => ({
 export const toggleCartModal = () => ({
   type: "TOGGLE-CART-MODAL",
 });
+
+export const missingStockItems = (items) => ({
+  type: "MISSING-STOCK-ITEMS",
+  items: items,
+});
