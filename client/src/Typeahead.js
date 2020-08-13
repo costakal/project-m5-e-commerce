@@ -111,6 +111,7 @@ const SearchBar = styled.input`
   width: 385px;
   max-width: 100%;
   font-size: 18px;
+  border: none;
   @media (max-width: 768px) {
     width: 300px;
   }
