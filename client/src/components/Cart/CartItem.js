@@ -53,12 +53,14 @@ const CartItem = ({ item }) => {
                 +
               </button>
             </QuantityControls>
-
-            <button onClick={() => dispatch(removeItemFromCart(item))}>
-              X
-            </button>
           </Adjustables>
         </Content>
+        <button
+          style={{ position: "absolute" }}
+          onClick={() => dispatch(removeItemFromCart(item))}
+        >
+          X
+        </button>
       </ItemBox>
     </>
   );
@@ -86,6 +88,20 @@ const ItemBox = styled.div`
   margin-left: 25px;
   margin-right: 25px;
   transition: 0.2s;
+  button {
+    background: black;
+    color: white;
+    border: none;
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    transition: 0.2s;
+    right: 10px;
+    &:hover {
+      background: ${COLORS.primary};
+      cursor: pointer;
+    }
+  }
   @media (max-width: 768px) {
     display: flex;
     flex-direction: column;
@@ -95,7 +111,6 @@ const ItemBox = styled.div`
 
 const Content = styled.div`
   button {
-    margin: -10px;
     background: black;
     color: white;
     border: none;
