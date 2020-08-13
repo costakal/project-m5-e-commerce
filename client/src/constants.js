@@ -4,6 +4,8 @@ export const FEATURED_HEIGHT = "500px";
 export const FONT_STYLES = {
   header: "Poiret One, cursive",
   content: "open-sans",
+  itemName: "Karla, sans-serif",
+  itemInfo: "Inconsolata, monospace",
 };
 
 export const COLORS = {

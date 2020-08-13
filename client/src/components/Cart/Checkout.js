@@ -12,10 +12,15 @@ const Checkout = () => {
   const dispatch = useDispatch();
   const [confirmationResponse, setConfirmationResponse] = useState(null);
   const { cartItems, subtotal } = useSelector((state) => state.cartReducer);
+  const [checkoutCart, setCheckoutCart] = useState(cartItems); // copy of cart items that will remain on the confirmation page once when the cart empties
 
   useEffect(() => {
     dispatch(toggleCartModal());
   }, []);
+
+  useEffect(() => {
+    if (!confirmationResponse) setCheckoutCart(cartItems);
+  }, [cartItems]);
 
   const handleSendOrder = (event) => {
     event.preventDefault();
@@ -35,9 +40,9 @@ const Checkout = () => {
       },
     };
 
-    fetchData("http://localhost:3000/order", reqObj).then((res) =>
-      setConfirmationResponse(res)
-    );
+    fetchData("http://localhost:3000/order", reqObj).then((res) => {
+      if (res.status === 200) setConfirmationResponse(res);
+    });
   };
 
   return (
@@ -79,7 +84,7 @@ const Checkout = () => {
 
       <div>
         <h1>Order summary</h1>
-        {cartItems.map((item) => {
+        {checkoutCart.map((item) => {
           return (
             <SummaryItem>
               <p>
@@ -87,13 +92,14 @@ const Checkout = () => {
                 Item:{item.name}
                 <span>
                   Price:{" "}
-                  {Number(cartItems[0].price.replace("$", "")) * item.quantity}
+                  {Number(checkoutCart[0].price.replace("$", "")) *
+                    item.quantity}
                 </span>
               </p>
             </SummaryItem>
           );
         })}
-        <h1>Total amount: {subtotal}</h1>
+        <h1>Amount to pay: {subtotal}</h1>
       </div>
     </Wrapper>
   );

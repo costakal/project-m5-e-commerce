@@ -42,7 +42,7 @@ const Cart = ({ cartQuantity }) => {
             </p>
             <button onClick={handleClose}>Continue Shopping</button>
             <StyledLink
-              emptyCart={cartItems.length > 0 ? false : true}
+              emptycart={cartItems.length > 0 ? "false" : "true"}
               to={cartItems.length > 0 ? "/checkout" : "/"}
             >
               Checkout
