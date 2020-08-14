@@ -8,7 +8,9 @@ import { requestCategory, receiveCategory } from "../../actions";
 
 import ItemsWrapper from "../Item/ItemsWrapper";
 import CatalogItem from "../Item/CatalogItem";
-import { HEADER_HEIGHT } from "../../constants";
+import { HEADER_HEIGHT, FONT_STYLES } from "../../constants";
+import { Icon } from "react-icons-kit";
+import { chevronRight } from "react-icons-kit/feather/chevronRight";
 import Loading from "../Loading";
 
 const CategoryFeed = () => {
@@ -23,7 +25,9 @@ const CategoryFeed = () => {
     return (
       <Wrapper>
         <Heading>
-          <p>categories &gt;</p>
+          <Label>
+            categories <Icon icon={chevronRight} size={20} />
+          </Label>
           <CategoryName>{category.category}</CategoryName>
         </Heading>
         <ItemsWrapper>
@@ -45,13 +49,18 @@ const Wrapper = styled.div`
 `;
 
 const Heading = styled.div`
+  font-family: ${FONT_STYLES.header};
   display: flex;
-  align-items: center;
+  align-items: flex-end;
+`;
+
+const Label = styled.p`
+  font-size: 1.2em;
 `;
 
 const CategoryName = styled.h1`
-  font-size: 1.5em;
-  margin-left: 10px;
+  font-size: 1.8em;
+  margin-left: 5px;
 `;
 
 export default CategoryFeed;

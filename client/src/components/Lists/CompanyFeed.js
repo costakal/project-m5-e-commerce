@@ -4,7 +4,7 @@ import styled from "styled-components";
 
 import { fetchData } from "../../handlers";
 import Loading from "../Loading";
-import { HEADER_HEIGHT } from "../../constants";
+import { HEADER_HEIGHT, FONT_STYLES } from "../../constants";
 
 import ItemsWrapper from "../Item/ItemsWrapper";
 import CatalogItem from "../Item/CatalogItem";
@@ -28,7 +28,7 @@ const CompanyFeed = () => {
         {companyFeed ? (
           <>
             <H2>Welcome to {companyFeed.company.name}'s store</H2>
-            <Sub>Our items:</Sub>
+            {/* <Sub>Our items:</Sub> */}
             <ItemsWrapper>
               {companyFeed.items.map((item) => (
                 <CatalogItem
@@ -68,16 +68,18 @@ const Wrapper = styled.div`
 `;
 
 const H2 = styled.h2`
+  font-family: ${FONT_STYLES.header};
   font-size: 40px;
   /* margin-top: 35px; */
   margin-bottom: 20px;
   /* margin-left: 20px; */
 `;
 
-const Sub = styled.div`
-  font-size: 20px;
-  margin-left: 20px;
-`;
+// const Sub = styled.div`
+//   font-size: 20px;
+//   margin-left: 20px;
+// `;
+
 const ItemCard = styled.div`
   display: flex;
   flex-wrap: wrap;
