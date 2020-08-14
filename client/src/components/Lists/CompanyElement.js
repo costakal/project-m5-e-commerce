@@ -19,6 +19,7 @@ const CompanyElement = ({ companies: { name } }) => {
   } else return <Loading />;
 };
 const Wrapper = styled.div`
+  font-size: 0.7em;
   display: flex;
   justify-content: center;
   align-items: center;

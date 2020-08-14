@@ -13,7 +13,7 @@ const Companies = () => {
   //  console.log(JSON.stringify(companies, null, 2));
   let stuff = companies;
   console.log(stuff);
-  console.log("zzz", companies);
+  console.log("comp", companies);
   //const sorted = _.sortBy(companies.name, "name");
   //console.log(sorted);
 
@@ -65,7 +65,7 @@ const StyledLink = styled(Link)`
     font-weight: 600;
     -moz-box-shadow: 10px 10px 5px 0px rgba(242, 242, 242, 1);
     box-shadow: 10px 10px 5px 0px rgba(242, 242, 242, 1);
-    border-radius: 24px;
+    border-radius: 10px;
   }
 `;
 const Wrapper = styled.div`

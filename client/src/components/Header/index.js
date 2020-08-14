@@ -7,7 +7,7 @@ import { HEADER_HEIGHT, FONT_STYLES, COLORS } from "../../constants";
 
 const Header = () => {
   return (
-    <Wrapper style={{ zIndex: "1001" }}>
+    <Wrapper style={{ zIndex: "2001" }}>
       <StoreName>
         <Link exact="true" to="/">
           WATCHCAVE

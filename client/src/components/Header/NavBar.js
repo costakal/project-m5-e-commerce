@@ -4,9 +4,14 @@ import styled from "styled-components";
 
 import CartButton from "./CartButton";
 import { COLORS } from "../../constants";
+import CompaniesDrop from "./CompaniesDrop";
+import ProductsDrop from "./ProductsDrop";
 
 const NavBar = () => {
   const [open, setOpen] = useState(false);
+  const [isShown, setIsShown] = useState(false);
+  const [isDropped, setIsDropeed] = useState(false);
+  //console.log(isShown);
   return (
     <>
       <Wrapper>
@@ -16,22 +21,37 @@ const NavBar = () => {
           <div />
         </StyledBurger>
         <WebNavMenu>
-          <NavLink
-            activeStyle={{ color: COLORS.primary, transition: "1s" }}
-            exact
-            to="/"
+          <Box1
+            onMouseEnter={() => setIsDropeed(true)}
+            onMouseLeave={() => setIsDropeed(false)}
           >
-            PRODUCTS
-          </NavLink>
+            <ProductsLink
+              activeStyle={{ color: COLORS.primary, transition: "1s" }}
+              to="/"
+            >
+              PRODUCTS
+            </ProductsLink>
+            <ProductsDrop isDropped={isDropped} />
+          </Box1>
 
-          <NavLink
-            activeStyle={{ color: COLORS.primary, transition: "1s" }}
-            to="/companieslist"
+          <Box
+            onMouseEnter={() => setIsShown(true)}
+            onMouseLeave={() => setIsShown(false)}
           >
-            COMPANIES
-          </NavLink>
+            <CompaniesLink
+              activeStyle={{ color: COLORS.primary, transition: "1s" }}
+              to="/companieslist"
+              onClick={() => setOpen(!open)}
+            >
+              COMPANIES
+            </CompaniesLink>
+            <CompaniesDropDown
+              isShown={isShown}
+              onClick={() => setIsShown(!isShown)}
+            />
+          </Box>
         </WebNavMenu>
-        <CartButton />
+        <CartButtonStyled />
       </Wrapper>
 
       <Ul open={open}>
@@ -52,7 +72,26 @@ const NavBar = () => {
 };
 
 export default NavBar;
-
+const CartButtonStyled = styled(CartButton)`
+  @media (min-width: 768) {
+    display: none;
+  }
+`;
+const ProductsLink = styled(Link)``;
+const Box1 = styled.div``;
+const Box = styled.div`
+  :hover {
+    border: none;
+  }
+`;
+const CompaniesLink = styled(NavLink)``;
+const CompaniesDropDown = styled(CompaniesDrop)``;
+const Hov = styled.ul``;
+const Drop1 = styled.div`
+  :hover {
+    display: flex;
+  }
+`;
 const StyledBurger = styled.div`
   width: 2rem;
   height: 2rem;
@@ -123,6 +162,7 @@ const Wrapper = styled.div`
 `;
 
 const WebNavMenu = styled.div`
+  display: flex;
   @media (max-width: 768px) {
     display: none;
   }

@@ -73,6 +73,8 @@ const EmptyCart = styled.button`
   :hover {
     color: ${COLORS.primary};
   }
+  @media (max-width: 768px) {
+  }
 `;
 
 export default CartButton;

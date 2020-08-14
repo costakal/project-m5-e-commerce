@@ -20,7 +20,7 @@ const CompanyFeed = () => {
       setCompanyFeed(res);
     });
     // eslint-disable-next-line
-  }, []);
+  }, [companyId]);
 
   return (
     <>
