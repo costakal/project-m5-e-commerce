@@ -18,11 +18,13 @@ const Cart = ({ cartQuantity }) => {
     let subtotal = 0.0;
 
     if (cartItems.length > 0) {
-      subtotal = cartItems.reduce(
-        (acc, item) =>
-          acc + Number(cartItems[0].price.replace("$", "")) * item.quantity,
-        0
-      );
+      subtotal = cartItems
+        .reduce(
+          (acc, item) =>
+            acc + Number(cartItems[0].price.replace("$", "")) * item.quantity,
+          0
+        )
+        .toFixed(2);
     }
     dispatch(updateCartSubtotal(subtotal));
   }, [cartItems]);
