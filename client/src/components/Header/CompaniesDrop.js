@@ -49,15 +49,20 @@ const CompaniesDrop = ({ isShown }) => {
   }
 };
 const Ul = styled.ul`
+  padding: 5px;
   width: 100%;
 
   display: flex;
   flex-wrap: wrap;
+  align-items: center;
 `;
 const Li = styled.li`
+  padding: 2px;
+  font-size: 11px;
   width: 80px;
 
-  @media (max-width: 1004px) {
+  @media (max-width: 900px) {
+    font-size: 10px;
     width: 30px;
   }
 `;
@@ -70,6 +75,7 @@ const Wrapper = styled.div`
   flex-direction: column;
   background-color: white;
   width: calc(80% - 150px);
+
   /* transform: ${({ open }) => (open ? "translateY(0)" : "translateY(100%)")};
   transition: all 0.9s ease-in; */
 `;

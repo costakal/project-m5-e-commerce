@@ -55,16 +55,13 @@ const Wrapper = styled.div`
   align-content: center;
   flex-direction: column;
   background-color: white;
-  /* width: calc(80% - 920px); */
 `;
-const Ul = styled.ul``;
+const Ul = styled.ul`
+  padding-top: 20px;
+`;
 const StyledLink = styled(Link)``;
 const Li = styled.li`
   height: 60px;
-
-  @media (max-width: 1004px) {
-    width: 30px;
-  }
 `;
 
 export default ProductsDrop;
