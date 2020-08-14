@@ -77,3 +77,8 @@ export const missingStockItems = (items) => ({
   type: "MISSING-STOCK-ITEMS",
   items: items,
 });
+
+export const error404 = (errorMessage) => ({
+  type: "ERROR-404",
+  error: errorMessage,
+});

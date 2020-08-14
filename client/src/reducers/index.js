@@ -5,6 +5,7 @@ import cartReducer from "./cart-reducer";
 import companiesReducer from "./companies-reducer";
 import categoriesReducer from "./categories-reducer";
 import categoryReducer from "./category-reducer";
+import errorReducer from "./error-reducer";
 
 export default combineReducers({
   itemsReducer,
@@ -12,4 +13,5 @@ export default combineReducers({
   companiesReducer,
   categoriesReducer,
   categoryReducer,
+  errorReducer,
 });
