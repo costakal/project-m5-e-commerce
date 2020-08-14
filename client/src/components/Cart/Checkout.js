@@ -9,6 +9,8 @@ import { toggleCartModal } from "../../actions";
 import { useDispatch } from "react-redux";
 import Checkout400 from "../Errors/Checkout400";
 import UnstyledButton from "../UnstyledButton";
+import { receiveAllItems, requestAllItems } from "../../actions";
+import UseFetchData from "../../Hooks/use-FetchData";
 
 const Checkout = () => {
   const dispatch = useDispatch();
@@ -16,10 +18,6 @@ const Checkout = () => {
   const [errorResponse, setErrorResponse] = useState(null);
   const { cartItems, subtotal } = useSelector((state) => state.cartReducer);
   const [checkoutCart, setCheckoutCart] = useState(cartItems); // copy of cart items that will remain on the confirmation page once when the cart empties
-
-  useEffect(() => {
-    dispatch(toggleCartModal());
-  }, []);
 
   useEffect(() => {
     if (!confirmationResponse) setCheckoutCart(cartItems);
@@ -50,7 +48,6 @@ const Checkout = () => {
       } else if (res.status === 400) setErrorResponse(res);
     });
   };
-
   return (
     <Wrapper>
       {!confirmationResponse ? (

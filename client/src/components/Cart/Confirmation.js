@@ -3,9 +3,12 @@ import styled from "styled-components";
 import { useDispatch } from "react-redux";
 import { emptyCart } from "../../actions";
 import { COLORS } from "../../constants";
+import { requestAllItems, receiveAllItems } from "../../actions";
+import UseFetchData from "../../Hooks/use-FetchData";
 
 const Confirmation = ({ data }) => {
   const dispatch = useDispatch();
+  UseFetchData(requestAllItems, receiveAllItems, "http://localhost:3000/items");
 
   useEffect(() => {
     dispatch(emptyCart());

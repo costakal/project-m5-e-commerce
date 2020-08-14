@@ -6,6 +6,8 @@ import UnstyledButton from "../UnstyledButton";
 import { COLORS } from "../../constants";
 import CartItem from "./CartItem";
 import { toggleCartModal, updateCartSubtotal } from "../../actions";
+import PrimaryButton from "../PrimaryButton";
+import { Redirect } from "react-router-dom/cjs/react-router-dom.min";
 
 const Cart = ({ cartQuantity }) => {
   const dispatch = useDispatch();
@@ -28,6 +30,7 @@ const Cart = ({ cartQuantity }) => {
     }
     dispatch(updateCartSubtotal(subtotal));
   }, [cartItems]);
+
   return (
     <>
       {showCart && (
@@ -53,6 +56,7 @@ const Cart = ({ cartQuantity }) => {
             <Options>
               <StyledLink onClick={handleClose}>Continue Shopping</StyledLink>
               <StyledLink
+                onClick={handleClose}
                 emptycart={cartItems.length > 0 ? "false" : "true"}
                 to={cartItems.length > 0 ? "/checkout" : "/"}
               >

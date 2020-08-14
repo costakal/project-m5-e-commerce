@@ -20,7 +20,6 @@ const HomeCatalog = () => {
   const status = useSelector((state) => state.itemsReducer.status);
 
   const showMore = () => {
-    window.scrollTo(0, 1000);
     setVisibleItems(visibleItems + 3);
   };
 
