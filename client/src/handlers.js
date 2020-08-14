@@ -13,6 +13,6 @@ export const stringShortener = (string, companyName) => {
   let newString;
   wordArray[0] === companyName
     ? (newString = wordArray.slice(1, 4))
-    : wordArray.slice(0, 3);
+    : (newString = wordArray.slice(0, 3));
   return newString.join(" ");
 };

@@ -64,6 +64,7 @@ const ItemDetails = () => {
               Website: <a href={getCompanyUrl()}>{getCompanyUrl()}</a>
             </p>
             <a
+              target="_blank"
               href={`https://www.facebook.com/sharer/sharer.php?u=${getCompanyUrl()}`}
             >
               <img src="https://img.icons8.com/carbon-copy/100/000000/facebook-new.png" />{" "}
