@@ -16,7 +16,12 @@ import Loading from "../Loading";
 const CategoryFeed = () => {
   const { categoryName } = useParams();
 
-  UseFetchData(requestCategory, receiveCategory, `/categories/${categoryName}`);
+  UseFetchData(
+    requestCategory,
+    receiveCategory,
+    `/categories/${categoryName}`,
+    categoryName
+  );
   const category = useSelector((state) => state.categoryReducer.category);
   const status = useSelector((state) => state.categoryReducer.status);
 
@@ -25,13 +30,9 @@ const CategoryFeed = () => {
     return (
       <Wrapper>
         <Heading>
-<<<<<<< Updated upstream
           <Label>
             categories <Icon icon={chevronRight} size={20} />
           </Label>
-=======
-          <p>categories </p>
->>>>>>> Stashed changes
           <CategoryName>{category.category}</CategoryName>
         </Heading>
         <ItemsWrapper>

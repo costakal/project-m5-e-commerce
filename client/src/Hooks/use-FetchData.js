@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import { fetchData } from "../handlers";
 import { error404 } from "../actions";
 
-const UseFetchData = (requestAction, receiveAction, url) => {
+const UseFetchData = (requestAction, receiveAction, url, dependency) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -14,7 +14,7 @@ const UseFetchData = (requestAction, receiveAction, url) => {
       if (res.status === 404) dispatch(error404(res.error));
     });
     // eslint-disable-next-line
-  }, []);
+  }, [dependency]);
 };
 
 export default UseFetchData;
