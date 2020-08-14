@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 import Loading from "../Loading";
 
 import { FONT_STYLES, COLORS } from "../../constants";
+import { stringShortener } from "../../handlers";
 
 const CatalogItem = ({
   item: { name, price, imageSrc, numInStock, companyId },
@@ -25,7 +26,7 @@ const CatalogItem = ({
             <img src={imageSrc} alt={name} />
           </Link>
           <ItemName to={link}>
-            <h3>{name}</h3>
+            <h3>{stringShortener(name, getCompany().name)}</h3>
           </ItemName>
           <ItemInfo>
             <Price>{price}</Price>

@@ -19,7 +19,10 @@ const HomeCatalog = () => {
   const items = useSelector((state) => state.itemsReducer.items);
   const status = useSelector((state) => state.itemsReducer.status);
 
-  const showMore = () => setVisibleItems(visibleItems + 3);
+  const showMore = () => {
+    window.scrollTo(0, 1000);
+    setVisibleItems(visibleItems + 3);
+  };
 
   return (
     <>

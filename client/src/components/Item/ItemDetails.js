@@ -63,6 +63,11 @@ const ItemDetails = () => {
             <p>
               Website: <a href={getCompanyUrl()}>{getCompanyUrl()}</a>
             </p>
+            <a
+              href={`https://www.facebook.com/sharer/sharer.php?u=${getCompanyUrl()}`}
+            >
+              <img src="https://img.icons8.com/carbon-copy/100/000000/facebook-new.png" />{" "}
+            </a>
             <Purchase>
               <p>{itemData.numInStock} left in stock </p>
               {itemData.numInStock > 0 ? (
@@ -121,6 +126,10 @@ const LeftSide = styled.div`
     &:hover {
       color: ${COLORS.primary};
     }
+  }
+
+  img {
+    width: 40px;
   }
 `;
 
